@@ -1,0 +1,143 @@
+<html dir="rtl" lang="AR">
+<meta charset="utf-8">
+<title>استعراض الإجازات</title>
+
+<script src="../vue.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link id="bootstrapcss" href="../bootstrap.css" rel="stylesheet">
+    <link id="headercss" href="../header.css" rel="stylesheet">
+   	<link id="stylecss" href="../style.css" rel="stylesheet">
+  
+  <script>
+$(document).ready( function(){
+    	var xmlhttp = new XMLHttpRequest();
+    	var breeds = {};
+    	var here
+    	function sendXHR(type, url, data, callback) {
+    		xmlhttp = new XMLHttpRequest() || new window.ActiveXObject("Microsoft.XMLHTTP");
+    		xmlhttp.open(type, url, true);
+    		xmlhttp.send(data);
+    		xmlhttp.onreadystatechange = function() { // Use onreadystatechange instead onload.
+    	      if (this.status === 200 && this.readyState === 4) {
+    	        callback(this.response);
+    	        var list = JSON.parse(xmlhttp.responseText);
+    	        var opt = document.getElementById("leaves");
+    	        var w = null;
+    	        var j;
+    	        console.log(list);
+    	        for (i in list){
+    	        	if(w == null){
+    	        		w = "<tr>"+
+    	                 	"<th>اسم الاجازة</th>"+
+    	                 	"<th>الحد الاقصى للايام</th>"+
+    	                 	"<th>الحد الادنى للايام</th>"+
+    	                 "</tr><tr>";
+    	                 w += "<td>"+ list[i].p_Name + "</td>";
+    	                  w += "<td>"+ list[i].p_MaximumDays + "</td>";
+    	                  w += "<td>"+ list[i].p_MinimumDays + "</td>";
+    	                 w += "</tr>";
+    	        	}else{
+   	                 w += "<td>"+ list[i].p_Name + "</td>";
+    	                  w += "<td>"+ list[i].p_MaximumDays + "</td>";
+    	                  w += "<td>"+ list[i].p_MinimumDays + "</td>";
+   	                 w += "</tr>";
+    	        	}
+    	        	
+    	        	
+    	        }
+    	        opt.innerHTML = w;
+    	      }
+    	    };
+    	  }
+		
+		sendXHR("GET", "/rest/ReadLeaveSpecification", null, function(response) {
+		breeds = JSON.parse(response);
+		});
+    });
+    </script>
+    
+  
+  
+  
+  
+  
+  
+<div id="app">
+  <mynavbar></mynavbar>
+  <myheader id="header"></myheader>
+  <myjs id="js"></myjs>
+  <mycontent id="content"></mycontent>
+  <myfooter id="footer"></myfooter>
+  </div>
+  
+  <script src="./home.js"></script>
+  
+<style>
+    #app {
+  min-height: 94.5vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px; 
+  box-sizing: border-box;
+}
+
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  color:white;
+  width: 100%;
+}
+</style>
+
+<div id="leave-action" style="display: none">
+  <div   id="content_links">
+    <div class="row">
+    <div class="col-md-2">
+         
+            <ul class="list-unstyled">
+                <br> <br> <br>
+
+                <li><a href="./home.html">الرئيسية</a></li>
+                <br>
+                <li><a href="./leave_list.html">استعراض الإجازات</a> </li>
+                <li><a href="./leave_form.html">استحداث إجازة</a> </li>
+                <li><a href="./leave_delete.html">إلغاء إجازة</a> </li>
+        </ul>
+       
+         </div>
+    <div class="col-md-8"><br><hr>
+         
+              <div id="action-home">
+              <h3 align="right">دليل الإجازات</h3>
+<br>
+
+<div class="row align-right">
+		<table id="leaves" style="width:100%">
+		</table>
+        
+    </div>
+<br>
+   
+              </div>
+    </div>
+    </div>
+    </div>
+
+
+         
+</div>
+
+ <script> 
+    $(function(){
+    	$("#content").html($("#content_links").html());
+    });
+    </script> 
+</html>
