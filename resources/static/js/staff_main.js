@@ -1,14 +1,14 @@
-function LoadAllEmployeesChart (){
+function LoadAllEmployeesChart (label,data){
     try {
         //WidgetChart 1
         var ctx = document.getElementById("widgetChart1");
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-            labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+            labels: label,
             type: 'line',
             datasets: [{
-                data: [78, 81, 80, 45, 34, 12, 40],
+                data: data,
                 label: 'عدد الموظفين',
                 backgroundColor: 'rgba(255,255,255,.1)',
                 borderColor: 'rgba(255,255,255,.55)',
@@ -66,17 +66,17 @@ function LoadAllEmployeesChart (){
     }  
 }
 
-function LoadOnLeaveEmployeesChart (){
+function LoadOnLeaveEmployeesChart (label,data){
     try {
         //WidgetChart 1
         var ctx = document.getElementById("widgetChart2");
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-            labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+            labels: label,
             type: 'line',
             datasets: [{
-                data: [78, 81, 80, 45, 34, 12, 40],
+                data: data,
                 label: 'عدد الموظفين',
                 backgroundColor: 'rgba(255,255,255,.1)',
                 borderColor: 'rgba(255,255,255,.55)',
@@ -134,7 +134,7 @@ function LoadOnLeaveEmployeesChart (){
     }  
 }
 
-function LoadOnWorkEmployeesChart (){
+function LoadOnWorkEmployeesChart (label,data){
     try {
         //WidgetChart 3
         var ctx = document.getElementById("widgetChart3");
@@ -142,10 +142,10 @@ function LoadOnWorkEmployeesChart (){
         var myChart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+            labels: label,
             type: 'line',
             datasets: [{
-              data: [65, 59, 84, 84, 51, 55],
+              data: data,
               label: 'Dataset',
               backgroundColor: 'transparent',
               borderColor: 'rgba(255,255,255,.55)',
@@ -208,7 +208,7 @@ function LoadOnWorkEmployeesChart (){
     }  
 }
 
-function LoadLeaveRequestsChart (){
+function LoadLeaveRequestsChart (label,data){
     try {
         //WidgetChart 4
         var ctx = document.getElementById("widgetChart4");
@@ -216,11 +216,11 @@ function LoadLeaveRequestsChart (){
             var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+                labels: label,
                 datasets: [
                 {
                     label: "My First dataset",
-                    data: [78, 81, 80, 65, 58, 75, 60, 75, 65, 60, 60, 75],
+                    data: data,
                     borderColor: "transparent",
                     borderWidth: "0",
                     backgroundColor: "rgba(255,255,255,.3)"
