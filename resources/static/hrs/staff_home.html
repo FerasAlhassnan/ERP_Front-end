@@ -11,6 +11,7 @@
     <link id="headercss" href="../header.css" rel="stylesheet">
     <link id="stylecss" href="../style.css" rel="stylesheet">
     <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom_style.css" rel="stylesheet" media="all">
     <style>
       #app {
         min-height: 94.5vh;
@@ -26,22 +27,7 @@
         color:white;
         width: 100%;
       }
-      .overview-box .icon{
-        width: 100%;
-        margin-right: 0;
-      }
-      .overview-item{
-        padding-left: 15px;
-        padding-right: 15px;
-        margin-bottom: 0;
-      }
-      .overview-box .text span{
-        font-size: 17px;
-      }
-      .overview-chart canvas{
-        position: absolute;
-        bottom: 0;
-      }
+      
     </style>
     <!-- JS FILES -->
     <script src="../vue.js"></script>
@@ -98,7 +84,7 @@
             <div id="summary">   
               <div class="row m-t-25">
 
-                <div class="col-sm-6 col-lg-3 pr-0">
+                <div class="col-sm-6 col-lg-3">
                   <div class="overview-item overview-item--c1">
                     <div class="overview__inner">
                       <div class="overview-box clearfix">
@@ -110,22 +96,13 @@
                           <span>عدد الموظفين</span>
                         </div>
                       </div>
-                      <div class="overview-chart">
-                        <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                          <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                          </div>
-                          <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                          </div>
-                        </div>
-                        <canvas id="widgetChart1" height="230" width="344" class="chartjs-render-monitor" style="display: block; height: 115px; width: 172px;bottom: -12px;"></canvas>
-                      </div>
+                        <canvas id="widgetChart1" height="130px"></canvas>
+
                     </div>
                   </div>
                 </div>
 
-                <div class="col-sm-6 col-lg-3 pr-0">
+                <div class="col-sm-6 col-lg-3">
                   <div class="overview-item overview-item--c2">
                     <div class="overview__inner">
                       <div class="overview-box clearfix">
@@ -137,22 +114,13 @@
                           <span>عدد الموظفين في العمل</span>
                         </div>
                       </div>
-                      <div class="overview-chart">
-                        <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                          <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                          </div>
-                          <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                          </div>
-                        </div>
-                        <canvas id="widgetChart2" height="230" width="344" class="chartjs-render-monitor" style="display: block; height: 115px; width: 172px;bottom: -12px;"></canvas>
-                      </div>
+                        <canvas id="widgetChart2" height="130px"></canvas>
+  
                     </div>
                   </div>
                 </div>
 
-                <div class="col-sm-6 col-lg-3 pr-0">
+                <div class="col-sm-6 col-lg-3">
                   <div class="overview-item overview-item--c3">
                     <div class="overview__inner">
                       <div class="overview-box clearfix">
@@ -164,22 +132,13 @@
                           <span>عدد الموظفين في إجازة</span>
                         </div>
                       </div>
-                      <div class="overview-chart">
-                        <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                          <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                          </div>
-                          <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                          </div>
-                        </div>
-                        <canvas id="widgetChart3" height="230" width="344" class="chartjs-render-monitor" style="display: block; height: 115px; width: 172px;"></canvas>
-                      </div>
+                        <canvas id="widgetChart3" height="130px"></canvas>
+
                     </div>
                   </div>
                 </div>
 
-                <div class="col-sm-6 col-lg-3 pr-0">
+                <div class="col-sm-6 col-lg-3">
                   <div class="overview-item overview-item--c4">
                     <div class="overview__inner">
                       <div class="overview-box clearfix">
@@ -191,17 +150,8 @@
                           <span>عدد الموظفين طالبي الإجازة  </span>
                         </div>
                       </div>
-                      <div class="overview-chart">
-                        <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                          <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                          </div>
-                          <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                          </div>
-                        </div>
-                        <canvas id="widgetChart4" height="230" width="344" class="chartjs-render-monitor" style="display: block; height: 73px; width: 172px;"></canvas>
-                      </div>
+                        <canvas id="widgetChart4" height="130px"></canvas>
+                      
                     </div>
                   </div>
                 </div>

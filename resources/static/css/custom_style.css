@@ -1,0 +1,148 @@
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .overview-item--c1,.overview-item--c2,.overview-item--c3,.overview-item--c4{
+        height: 205px;
+    }
+   
+    .overview-chart{
+       height: 115px;
+    }
+   #widgetChart1,#widgetChart2,#widgetChart3,#widgetChart4{
+        position: absolute;
+        bottom: 10px!important;
+    }
+   
+   
+    .overview-box .icon{
+       width: 100%;
+       margin-right: 0;
+     }
+     .overview-item{
+       padding-left: 15px;
+       padding-right: 15px;
+       margin-bottom: 0;
+       
+     }
+     .overview-box .text span{
+       font-size: 17px;
+     }
+     .overview-chart canvas{
+       position: absolute;
+       bottom: 0;
+     }
+     .overview-box .text{
+       margin-right: 10px;
+     }
+     .overview-box.clearfix{
+       display: flex;
+       height: 90px;
+     }
+     .overview-box .icon{
+       width: auto;
+     }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1550.98px) {
+
+    .overview-item--c1,.overview-item--c2,.overview-item--c3,.overview-item--c4{
+        height: 205px;
+    }
+   
+    .overview-chart{
+       height: 115px;
+    }
+    #widgetChart1,#widgetChart2,#widgetChart3,#widgetChart4{
+        /* height: 115px!important; */
+        bottom: 10px!important;
+    }
+   
+    .overview-box .icon{
+       width: 100%;
+       margin-right: 0;
+     }
+     .overview-item{
+       padding-left: 15px;
+       padding-right: 15px;
+       margin-bottom: 0;
+       
+     }
+     .overview-box .text span{
+       font-size: 17px;
+     }
+     .overview-chart canvas{
+       position: absolute;
+       bottom: 0;
+     }
+     .overview-box .text{
+       margin-right: 10px;
+     }
+     .overview-box.clearfix{
+       display: flex;
+       height: 90px;
+     }
+     .overview-box .icon{
+       width: auto;
+    }
+}
+
+
+
+@media (min-width: 1550.98px) {
+
+    .overview-item--c1,.overview-item--c2,.overview-item--c3,.overview-item--c4{
+        height: 230px;
+    }
+   
+    .overview-chart{
+       height: 115px;
+    }
+   #widgetChart1,#widgetChart2,#widgetChart3,#widgetChart4{
+        /* height: 115px!important; */
+        bottom: 10px!important;
+    }
+   
+   
+    .overview-box .icon{
+       width: 100%;
+       margin-right: 0;
+     }
+     .overview-item{
+       padding-left: 15px;
+       padding-right: 15px;
+       margin-bottom: 0;
+       
+     }
+     .overview-box .text span{
+       font-size: 17px;
+     }
+     .overview-chart canvas{
+       position: absolute;
+       bottom: 0;
+     }
+     .overview-box .text{
+       margin-right: 10px;
+     }
+     .overview-box.clearfix{
+       display: flex;
+       height: 90px;
+     }
+     .overview-box .icon{
+       width: auto;
+    }
+}
