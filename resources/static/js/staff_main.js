@@ -153,7 +153,7 @@ function LoadOnWorkEmployeesChart (label,data){
           },
           options: {
   
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             legend: {
               display: false
             },
