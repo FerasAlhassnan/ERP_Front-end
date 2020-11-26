@@ -1,3 +1,4 @@
+
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) { 
     .overview-item--c1,.overview-item--c2,.overview-item--c3,.overview-item--c4{
@@ -128,7 +129,7 @@
 @media (min-width: 1200px) and (max-width: 1550.98px) {
 
     .overview-item--c1,.overview-item--c2,.overview-item--c3,.overview-item--c4{
-        height: 205px;
+        height: 185px;
     }
    
     .overview-chart{
@@ -165,6 +166,16 @@
      }
      .overview-box .icon{
        width: auto;
+    }
+    .overview-item-container{
+        padding: 0 30px 30px 30px;
+        margin-right: -45px;
+    }
+    .overview-box .icon i{
+        font-size: 40px;
+    }
+    .overview-item{
+        padding-top: 20px;
     }
 }
 
