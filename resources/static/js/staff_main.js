@@ -369,7 +369,7 @@ function AllInOne (){
           "display": false
         },
         "tooltips": {
-          "intersect": false,
+          "intersect": true,
           "mode": "index",
           "position": "nearest",
           "callbacks": {}
