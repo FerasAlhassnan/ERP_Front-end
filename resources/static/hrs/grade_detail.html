@@ -1,4 +1,5 @@
 <html dir="rtl" lang="AR">
+<head>
 <meta charset="utf-8">
 <title>بيانات المرتبة</title>
 <script src="../vue.js"></script>
@@ -33,9 +34,11 @@
   color:white;
   width: 100%;
   margin: 0;
-  bottom: 0;
+  bottom: 54;
 }
 </style>
+</head>
+<body>
   
  <div id="app">
   <mynavbar></mynavbar>
@@ -53,23 +56,20 @@
         <ul class="navbar-nav ml-auto">
              	
             <li class="nav-item">
-            <a class="nav-link" href="./staff_list.html">الموظفون</a>
-          </li>
-            <li class="nav-item">
-            <a class="nav-link" href="./overtime_list.html">خارج الدوام</a>
+            <a class="nav-link" href="./staff_home.html">الموظفون</a>
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="./leave_list.html">الإجازات</a>
+            <a class="nav-link" href="./leave_home.html">الإجازات</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="./job_list.html">الوظائف</a>
+            <a class="nav-link" href="./job_home.html">الوظائف</a>
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="./grade_list.html">المراتب</a>
+            <a class="nav-link" href="./grade_home.html">المراتب</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./department_list.html">الإدارات</a>
+            <a class="nav-link" href="./department_home.html">الإدارات</a>
           </li>
             <li class="nav-item">
             <a class="nav-link" href="./pay_home.html">الرواتب</a>
@@ -93,10 +93,6 @@
                 <li><a href="./home.html">الرئيسية</a></li>
                 <br>
                 <li><a href="./grade_list.html">استعراض المراتب</a> </li>
-                <li><a href="./grade_form.html">استحداث مرتبة</a> </li>
-                <br>
-                <li><a href="./step_form.html">استحداث درجة</a> </li>
-                <br>
                 <li><a href="./bonus_list.html">استعراض البدلات</a> </li>
                 <li><a href="./bonus_form.html">استحداث بدل</a> </li>
         </ul>
@@ -143,6 +139,7 @@
 </div>
 </div>
 </div>
+</body>
      		<script src="../base.js"></script>	 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
               <script class="vue" src="./grade_detail.js"></script>	

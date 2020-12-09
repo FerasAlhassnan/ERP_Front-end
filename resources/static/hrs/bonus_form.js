@@ -33,9 +33,9 @@
           console.log({ name: this.name, amount: this.amount});
         },
       submitProduct: function () {
-    	  axios.post('...', {
-            	name: this.name,
-            	amount: this.amount
+    	  axios.post('/rest/createBonus', {
+    		  p_Name: this.name,
+    		  p_Percent: parseFloat(this.amount)
             }).then(response => {
                 window.location.href = '/hrs/home.html';
             })

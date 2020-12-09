@@ -40,7 +40,7 @@
           
         },
       submitProduct: function () {
-    	  axios.post('/rest/saveJob', {
+    	  axios.post('/rest/createJob', {
     		    step: this.step,
     		    grade: this.grade,
     		    amount: this.amount,

@@ -19,20 +19,17 @@ Vue.component('mynavbar', {
              ' الرئيسية'+
               '<span class="sr-only">(current)</span>'+
             '</a>'+
-                    '<li class="nav-item">'+
-            '<a class="nav-link" href="#">لوحة التحكم</a>'+
-          '</li>'+
           '<li class="nav-item">'+
-            '<a class="nav-link" href="./finance/home.html"> النظام المالي</a>'+
+            '<a class="nav-link" href="/finance/home.html"> النظام المالي</a>'+
           '</li>'+
            '<li class="nav-item">'+
-            '<a class="nav-link" href="hrs/home.html">نظام الموارد البشرية</a>'+
+            '<a class="nav-link" href="/hrs/home.html">نظام الموارد البشرية</a>'+
           '</li>'+
+
           '<li class="nav-item">'+
-            '<a class="nav-link" href="{% url '+'initiative:index'+' %}">المبادرات</a>'+
+            '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
           '</li>'+
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج   </a></li>'+
-             '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+
 
                          
 

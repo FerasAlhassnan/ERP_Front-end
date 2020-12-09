@@ -14,25 +14,22 @@ Vue.component('mynavbar', {
                
 
 
-            '<a class="nav-link" href="/Deployment/home/ar/">'+
+            '<a class="nav-link" href="/home.html">'+
 
              ' الرئيسية'+
               '<span class="sr-only">(current)</span>'+
             '</a>'+
-                    '<li class="nav-item">'+
-            '<a class="nav-link" href="#">لوحة التحكم</a>'+
-          '</li>'+
           '<li class="nav-item">'+
             '<a class="nav-link" href="./home.html"> النظام المالي</a>'+
           '</li>'+
            '<li class="nav-item">'+
             '<a class="nav-link" href="/hrs/home.html">نظام الموارد البشرية</a>'+
           '</li>'+
+
           '<li class="nav-item">'+
-            '<a class="nav-link" href="{% url '+'initiative:index'+' %}">المبادرات</a>'+
+            '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
           '</li>'+
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج   </a></li>'+
-             '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+
 
                          
 
@@ -72,6 +69,44 @@ Vue.component('mynavbar', {
     '</div> '+
 '</div>'});
 
+ 
+  
+  Vue.component('myheader',{
+	  template: '<div id="header">'+
+
+	  '<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">'+
+
+	      '<div class="container">'+
+	       ' <a class="navbar-brand" href="/finance/home.html"> النظام المالي</a>'+
+	       ' <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#home-navbarResponsive" aria-controls="home-navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">'+
+	     ' <span class="navbar-toggler-icon"></span>'+
+	    '</button>'+
+	        '<div class="collapse navbar-collapse" id="home-navbarResponsive">'+
+	        '  <ul class="navbar-nav ml-auto">'+
+	               	
+	          '    <li class="nav-item">'+
+	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	          '  </li>'+
+	             ' <li class="nav-item">'+
+	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '</li>'+
+	             '  <li class="nav-item">'+
+	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	           ' </li>'+
+	           '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./journal.html">اليوميات</a>'+
+	           ' </li>'+
+
+
+	             
+	         ' </ul>'+
+	       ' </div>'+
+	     ' </div>'+
+	   ' </nav>'+
+	 
+	         ' </div>'+
+	           
+		  '</div>'});
 
 
 var tabledata = [];
@@ -82,7 +117,7 @@ var tabledata = [];
     	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: "2021"
     	            }).then(axios
-    	          	      .get('/rest/readChapters')
+    	          	      .get('/rest/ReadRequested')
     	        	      .then(response => (
 								  tabledata = response.data,
 								  table.setData(tabledata),
@@ -159,15 +194,18 @@ var table = new Tabulator("#example-table", {
 	{title:"المصاريف", hozAlign:"center", editor:"input",
 		columns:[
 			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input"},
-			{title:"الطلب", field:"p_Requested", hozAlign:"center", editor:"input"},
+			{title:"الطلب", field:"p_RequestedFund", hozAlign:"center", editor:"input"},
 		],},
 	{title:"الإيرادات", hozAlign:"center", editor:"input",
 		columns:[
 			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input"},
-			{title:"الطلب", field:"p_Requested", hozAlign:"center", editor:"input"},
+			{title:"الطلب", field:"p_RequestedRevenue", hozAlign:"center", editor:"input"},
 		],},
 		{title:"مبررات", field:"p_Jestification",  hozAlign:"center",  editor:"input", widthGrow:2}
-	]
+	],
+    initialSort:[
+        {column:"p_Code", dir:"asc"}, //sort by this first
+    ]
 });
 
 
@@ -182,18 +220,6 @@ document.getElementById("history-redo").addEventListener("click", function(){
 });
 
 
-
-document.getElementById("submit").addEventListener("click", function(){
-	document.getElementById("table-after-edit").innerHTML = "";
-	for(var i = 0; i < tabledata.length; i++){
-		if(tabledata[i].p_Ceiling > tabledata[i].p_Requested && tabledata[i].p_Jestification == undefined){
-			alert("يجب كتابة تبرير للبند  " + tabledata[i].p_Name + "\nلأن السقف أعلى من الطلب")
-			document.getElementById("table-after-edit").innerHTML = "";
-			return;
-		}
-	document.getElementById("table-after-edit").innerHTML += JSON.stringify(tabledata[i]) + "<br>";
-	}
-})
 
 document.getElementById("add-row").addEventListener("click", function(){
 	var row = {p_Code: "-1", p_Name: "اسم", p_Ceiling: "0", p_Requested: "0"};

@@ -27,31 +27,32 @@
 <body>
 	<div id="body">
 	<mynavbar></mynavbar>
+	<myheader></myheader>
 	<div id="search">
   <select id="filter-field">
     <option></option>
-    <option value="p_Code">رقم التصنيف الاقتصادي</option>
-    <option value="p_Name">اسم التصنيف الاقتصادي</option>
+    <option value="p_Code">رقم البرنامج</option>
+    <option value="p_Name">اسم البرنامج</option>
     <option value="p_Ceiling">السقف</option>
     <option value="p_Requested">الطلب</option>
   </select>
 
-  <input id="filter-value" type="text" placeholder="value to filter">
-  <button id="filter-clear">Clear</button>
+  <input id="filter-value" type="text" placeholder="البحث">
+  <button id="filter-clear">مسح</button>
 </div>
+<hr>
 <div id="buttons">
-	<button id="history-undo">Undo Edit</button>
-	<button id="history-redo">Redo Edit</button>
-	<button id="add-row">Add row</button>
-	<button id="submit">Submit</button>
+	<button id="history-undo">تراجع عن التحرير</button>
+	<button id="history-redo">إعادة التحرير</button>
+	<button id="add-row">إضافة برنامج</button>
 </div>
-
+<hr>
 <div id="example-table"></div>
 <div>
 	<p id="table-after-edit" align="left" dir="ltr" lang="US"></p>
 </div>
 <div id="end">
-<button id="add-it-to-backend">Save</button>
+<button id="add-it-to-backend">حفظ</button>
 </div>
 <myfooter id="footer"></myfooter>
  </div>

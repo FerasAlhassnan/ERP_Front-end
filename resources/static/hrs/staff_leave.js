@@ -76,7 +76,7 @@
           
         },
       submitProduct: function () {
-		    if(role === 'Employees'){
+		    if(this.role === 'Employees'){
     	 axios.post('/rest/requestEmployeeLeave', {
     		    p_Starting: parseInt(this.start),
     		    p_Ending: parseInt(this.end),

@@ -44,6 +44,7 @@
     	  options: ['البكالوريوس','الماجستير','الدكتوراه'],
     	  gender: '',
     	  selects: ['ذكر','أنثى'],
+    	  email: '',
         errors: {
           name: false,
           email: false
@@ -51,19 +52,20 @@
       },
       methods: {
         processForm: function() {
-          console.log({ employeeID: this.employeeID, nationalID: this.nationalID , firstName: this.firstName , middleName: this.middleName , lastName: this.lastName , dateOfBirth: this.dateOfBirth , degree: this.degree , gender: this.gender});
+          console.log({ employeeID: this.employeeID, nationalID: this.nationalID , firstName: this.firstName , middleName: this.middleName , lastName: this.lastName , dateOfBirth: this.dateOfBirth , degree: this.degree , gender: this.gender, email: this.email});
           
         },
       submitProduct: function () {
     	  axios.post('/rest/createEmployee', {
-    		  employeeID: parseInt(this.employeeID),
-    		  nationalID: parseInt(this.nationalID),
-    		  firstName: this.firstName,
-    		  middleName: this.middleName,
-    		  lastName: this.lastName,
-    		  dateOfBirth: parseInt(this.dateOfBirth),
-    		  degree: this.degree,
-    		  gender: this.gender
+    		  p_EmployeeID: parseInt(this.employeeID),
+    		  p_NationalID: parseInt(this.nationalID),
+    		  p_FirstName: this.firstName,
+    		  p_MiddleName: this.middleName,
+    		  p_LastName: this.lastName,
+    		  p_DateOfBirth: parseInt(this.dateOfBirth),
+    		  p_Degree: this.degree,
+    		  p_Gender: this.gender,
+    		  p_Username: this.email,
             }).then(response => {
                 window.location.href = '/hrs/home.html';
             })

@@ -267,9 +267,7 @@ section {
 /* ----- Page Wrapper----- */
 /*Override Grid Bootstrap*/
 @media (min-width: 1200px) {
-    .container {
-        max-width: 1320px;
-    }
+   
 }
 
 /*Page Objects*/
@@ -3207,10 +3205,9 @@ section {
     display: inline-block;
 }
 
-.overview-box .text h2 {
+.overview-box .text h3 {
     font-weight: 300;
     color: #fff;
-    font-size: 30px;
     line-height: 1;
     margin-bottom: 5px;
 }

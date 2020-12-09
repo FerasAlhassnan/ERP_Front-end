@@ -14,25 +14,22 @@ Vue.component('mynavbar', {
                
 
 
-            '<a class="nav-link" href="/Deployment/home/ar/">'+
+            '<a class="nav-link" href="/home.html">'+
 
              ' الرئيسية'+
               '<span class="sr-only">(current)</span>'+
             '</a>'+
-                    '<li class="nav-item">'+
-            '<a class="nav-link" href="#">لوحة التحكم</a>'+
-          '</li>'+
           '<li class="nav-item">'+
             '<a class="nav-link" href="./home.html"> النظام المالي</a>'+
           '</li>'+
            '<li class="nav-item">'+
             '<a class="nav-link" href="/hrs/home.html">نظام الموارد البشرية</a>'+
           '</li>'+
+
           '<li class="nav-item">'+
-            '<a class="nav-link" href="{% url '+'initiative:index'+' %}">المبادرات</a>'+
+            '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
           '</li>'+
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج   </a></li>'+
-             '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+
 
                          
 
@@ -72,7 +69,47 @@ Vue.component('mynavbar', {
     '</div> '+
 '</div>'});
 
- 
+  Vue.component('myheader',{
+	  template: '<div id="header">'+
+
+	  '<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">'+
+
+	      '<div class="container">'+
+	       ' <a class="navbar-brand" href="/finance/home.html"> النظام المالي</a>'+
+	       ' <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#home-navbarResponsive" aria-controls="home-navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">'+
+	     ' <span class="navbar-toggler-icon"></span>'+
+	    '</button>'+
+	        '<div class="collapse navbar-collapse" id="home-navbarResponsive">'+
+	        '  <ul class="navbar-nav ml-auto">'+
+	               	
+	          '    <li class="nav-item">'+
+	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	          '  </li>'+
+	             ' <li class="nav-item">'+
+	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '</li>'+
+	             '  <li class="nav-item">'+
+	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	           ' </li>'+
+
+	            '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./journal.html">اليوميات</a>'+
+	           ' </li>'+
+	           
+	           '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./accounts.html">الحسابات</a>'+
+	           ' </li>'+
+
+
+	             
+	         ' </ul>'+
+	       ' </div>'+
+	     ' </div>'+
+	   ' </nav>'+
+	 
+	         ' </div>'+
+	           
+		  '</div>'});
 
 
 
@@ -108,7 +145,7 @@ Vue.component('mynavbar', {
     	    	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: targetId
     	            }).then(axios
-    	          	      .get('/rest/readChapters')
+    	          	      .get('/rest/ReadRequested')
     	        	      .then(response => (
                           this.allBudgets = response.data,
                           this.chapter = "full",

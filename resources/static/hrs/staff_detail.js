@@ -48,6 +48,12 @@
                 }).then(
                   window.location.href = '/hrs/staff_bonus_detail.html'
                 )
+              },
+              delete_staff:function(event){
+            	  targetId = event.currentTarget.id;
+            	  axios.post('/rest/deleteEmployee',{
+                      p_EmployeeID: parseInt(targetId)
+                    })
               }
           }
     });

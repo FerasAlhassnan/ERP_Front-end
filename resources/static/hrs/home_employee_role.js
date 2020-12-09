@@ -10,8 +10,7 @@ Vue.component('mynavbar', {
                       
           
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج    </a></li>'+
-
-             '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+           
+         
 
            
         '</ul>'+
@@ -65,7 +64,7 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./staff_list.html">الموظفون</a>'+
+	            '  <a class="nav-link" href="./staff_home.html">الموظفون</a>'+
 	          '  </li>'+
 
 

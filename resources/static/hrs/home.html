@@ -1,10 +1,114 @@
 <html dir="rtl" lang="AR">
+<head>
 <meta charset="utf-8">
 <title>نظام الموارد البشرية</title>
 <script src="../vue.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <script> 
+  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  
+
+<meta name="description" content="au theme template">
+<meta name="author" content="Hau Nguyen">
+<meta name="keywords" content="au theme template">
+
+    <script src="../webjars/jquery/jquery.min.js"></script>
+    <script src="../webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="../webjars/stomp-websocket/stomp.min.js"></script>
+   
+<link id="bootstrapcss" href="../bootstrap.css" rel="stylesheet">
+    <link id="headercss" href="../header.css" rel="stylesheet">
+   	<link id="stylecss" href="../style.css" rel="stylesheet">
+  
+<link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="../css/font-face.css" rel="stylesheet" media="all">
+<link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+<link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
+<link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+<link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+<link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
+<link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+<link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
+<link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../css/theme.css" rel="stylesheet" media="all">
+    <link href="../css/custom_style.css" rel="stylesheet" media="all">
+  </head>
+  <body>
+<div id="app">
+  <mynavbar></mynavbar>
+  <myheader id="header"></myheader>
+  <myjs id="js"></myjs>
+<mycontent id="content"></mycontent>
+  <myfooter id="footer"></myfooter>
+  </div>
+  <div id="x"></div>
+  <script id="home"></script>
+  <script src="./home_check_role.js"></script>
+  
+<style>
+     #app {
+  min-height: 95.5vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px; 
+  box-sizing: border-box;
+}
+
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  color:white;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+      ul {
+    display: block;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+</style>
+
+</body>
+
+
+
+
+
+<script src="../vendor/jquery-3.2.1.min.js"></script>
+
+<script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
+
+<script src="../vendor/slick/slick.min.js">
+    </script>
+<script src="../vendor/wow/wow.min.js"></script>
+<script src="../vendor/animsition/animsition.min.js"></script>
+<script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+<script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="../vendor/counter-up/jquery.counterup.min.js">
+    </script>
+<script src="../vendor/circle-progress/circle-progress.min.js"></script>
+<script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="../vendor/select2/select2.min.js">
+    </script>
+
+<script> 
     $(function(){
       var xmlhttp = new XMLHttpRequest();
   	var breeds = {};
@@ -282,250 +386,4 @@
 		});
     });
     </script> 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src=" https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-  
-
-<meta name="description" content="au theme template">
-<meta name="author" content="Hau Nguyen">
-<meta name="keywords" content="au theme template">
-
-    <script src="../webjars/jquery/jquery.min.js"></script>
-    <script src="../webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="../webjars/stomp-websocket/stomp.min.js"></script>
-   
-<link id="bootstrapcss" href="../bootstrap.css" rel="stylesheet">
-    <link id="headercss" href="../header.css" rel="stylesheet">
-   	<link id="stylecss" href="../style.css" rel="stylesheet">
-  
-<link href="../vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-<link href="../css/font-face.css" rel="stylesheet" media="all">
-<link href="../vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-<link href="../vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-<link href="../vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
-<link href="../vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-<link href="../vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-<link href="../vendor/wow/animate.css" rel="stylesheet" media="all">
-<link href="../vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-<link href="../vendor/slick/slick.css" rel="stylesheet" media="all">
-<link href="../vendor/select2/select2.min.css" rel="stylesheet" media="all">
-<link href="../vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-<link href="../css/theme.css" rel="stylesheet" media="all">
-  
-<div id="app">
-  <mynavbar></mynavbar>
-  <myheader id="header"></myheader>
-  <myjs id="js"></myjs>
-<mycontent id="content"></mycontent>
-  <myfooter id="footer"></myfooter>
-  </div>
-  <div id="x"></div>
-  <script id="home"></script>
-  <script src="./home_check_role.js"></script>
-  
-<style>
-     #app {
-  min-height: 95.5vh;
-  position: relative;
-  margin: 0;
-  padding-bottom: 100px; 
-  box-sizing: border-box;
-}
-
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  color:white;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.container-fluid.padding, .row.text-center{
-  width: 100% !important;
-  margin: 0;
-  padding: 0;
-}
-
-
-.overview-item{
-  height: 90%;
-} 
-
-.overview-chart{
-  height:50px;
-}
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;
-}
-</style>
- 
-
-
-<div style="display: none">
-   <div id="home-content">
-<div class="row">
-    <div class="col-md-2">
-             
-
-    </div>
-    <div class="col-md-8">
-		
-<div id="summary">   
-<div class="row m-t-25">
-<div class="col-sm-6 col-lg-3">
-<div class="overview-item overview-item--c1">
-<div class="overview__inner">
-<div class="overview-box clearfix">
-<div class="icon">
-<i class="zmdi zmdi-account-o"></i>
-</div>
-<div class="text">
-<h2>10368</h2>
-<span>members online</span>
-</div>
-</div>
-<div class="overview-chart"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-<canvas id="widgetChart1" height="166" width="344" class="chartjs-render-monitor" style="display: block; height: 83px; width: 172px;"></canvas>
-</div>
-</div>
-</div>
-</div>
-<div class="col-sm-6 col-lg-3">
-<div class="overview-item overview-item--c2">
-<div class="overview__inner">
-<div class="overview-box clearfix">
-<div class="icon">
-<i class="zmdi zmdi-shopping-cart"></i>
-</div>
-<div class="text">
-<h2>388,688</h2>
-<span>items solid</span>
-</div>
-</div>
-<div class="overview-chart"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-<canvas id="widgetChart2" height="230" width="344" class="chartjs-render-monitor" style="display: block; height: 115px; width: 172px;"></canvas>
-</div>
-</div>
-</div>
-</div>
-<div class="col-sm-6 col-lg-3">
-<div class="overview-item overview-item--c3">
-<div class="overview__inner">
-<div class="overview-box clearfix">
-<div class="icon">
-<i class="zmdi zmdi-calendar-note"></i>
-</div>
-<div class="text">
-<h2>1012122,861</h2>
-<span>this week</span>
-</div>
-</div>
-<div class="overview-chart"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-<canvas id="widgetChart3" height="230" width="344" class="chartjs-render-monitor" style="display: block; height: 115px; width: 172px;"></canvas>
-</div>
-</div>
-</div>
-</div>
-<div class="col-sm-6 col-lg-3">
-<div class="overview-item overview-item--c4">
-<div class="overview__inner">
-<div class="overview-box clearfix">
- <div class="icon">
-<i class="zmdi zmdi-money"></i>
-</div>
-<div class="text">
-<h2>$1,060,386</h2>
-<span>total earnings</span>
-</div>
-</div>
-<div class="overview-chart"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-<canvas id="widgetChart4" height="146" width="344" class="chartjs-render-monitor" style="display: block; height: 73px; width: 172px;"></canvas>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>  
-    
-    		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<br><hr>
-              <div id="action" align="right">
-            <p>أهلا وسهلا بك في نظام الموارد البشرية! </p>
-        <p>أعد هذا النظام باعتباره نموذجا تجريبيا طور بالاستعانة بمنهجية النمذجة فائقة السرعة</p>
-        <br>
-            <h4>ملخص لمحتوى النظام</h4>
-        <hr>
-        <p>تحتوي قاعدة البيانات على التالي:</p>
-        <ul>
-                <li><b>عدد الموظفين:</b> {num_of_staff}}</li>
-                <li><b> على رأس العمل:</b> {num_on_vacation}}</li>
-
-                <li><b>متوسط أعمار الموظفين:</b> {avg_age}}</li>
-
-                <li><b>عدد الوظائف:</b> {num_of_jobs}}</li>
-                <li><b>عدد الوظائف المشغولة:</b> {num_of_jobs}}</li>
-                <li><b>عدد الوظائف الشاغرة:</b> {num_of_jobs}}</li>
-                
-        </ul>
-        <div style="background-color: lightyellow">
-        	<b>تحديثات النظام:</b>
-        	<div id="messages"></div>
-        </div>
-        </div>
-         
-    </div>
-    
-</div>
-
-</div>
-</div>
-
-
-
-<script> 
-$(document).ready( function() {
-   setTimeout(function(){$("#content").html($("#home-content").html());}, 300);
-});
-    
-</script>
-
-
-
-
-<script src="../vendor/jquery-3.2.1.min.js"></script>
-
-<script src="../vendor/bootstrap-4.1/popper.min.js"></script>
-<script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
-
-<script src="../vendor/slick/slick.min.js">
-    </script>
-<script src="../vendor/wow/wow.min.js"></script>
-<script src="../vendor/animsition/animsition.min.js"></script>
-<script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-<script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
-<script src="../vendor/counter-up/jquery.counterup.min.js">
-    </script>
-<script src="../vendor/circle-progress/circle-progress.min.js"></script>
-<script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="../vendor/chartjs/Chart.bundle.min.js"></script>
-<script src="../vendor/select2/select2.min.js">
-    </script>
-
-<script src="../js/main.js"></script>
 </html>

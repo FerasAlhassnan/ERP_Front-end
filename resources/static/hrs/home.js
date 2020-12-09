@@ -20,21 +20,18 @@ Vue.component('mynavbar', {
              ' الرئيسية'+
               '<span class="sr-only">(current)</span>'+
             '</a>'+
-                    '<li class="nav-item">'+
-            '<a class="nav-link" href="#">لوحة التحكم</a>'+
-          '</li>'+
           '<li class="nav-item">'+
             '<a class="nav-link" href="../finance/home.html"> النظام المالي</a>'+
           '</li>'+
            '<li class="nav-item">'+
             '<a class="nav-link" href="./home.html">نظام الموارد البشرية</a>'+
           '</li>'+
+
           '<li class="nav-item">'+
-            '<a class="nav-link" href="{% url '+'initiative:index'+' %}">المبادرات</a>'+
+            '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
           '</li>'+
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج    </a></li>'+
-
-             '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+           
+       
 
            
         '</ul>'+
@@ -88,23 +85,20 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./staff_list.html">الموظفون</a>'+
+	            '  <a class="nav-link" href="./staff_home.html">الموظفون</a>'+
 	          '  </li>'+
-	             ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./overtime_list.html">خارج الدوام</a>'+
-	            '</li>'+
 	             '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./leave_list.html">الإجازات</a>'+
+	            '  <a class="nav-link" href="./leave_home.html">الإجازات</a>'+
 	           ' </li>'+
 
 	            '<li class="nav-item">'+
-	             ' <a class="nav-link" href="./job_list.html">الوظائف</a>'+
+	             ' <a class="nav-link" href="./job_home.html">الوظائف</a>'+
 	           ' </li>'+
 	            ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./grade_list.html">المراتب</a>'+
+	            '  <a class="nav-link" href="./grade_home.html">المراتب</a>'+
 	           ' </li>'+
 	           ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./department_list.html">الإدارات</a>'+
+	            '  <a class="nav-link" href="./department_home.html">الإدارات</a>'+
 	           ' </li>'+
 	            '  <li class="nav-item">'+
 	            '  <a class="nav-link" href="./pay_home.html">الرواتب</a>'+
@@ -126,7 +120,106 @@ Vue.component('mynavbar', {
   });
   
   Vue.component('mycontent',{
-	  template: '<div id="content"></div>'
+	  template: '<div id="content">'+
+		  '<div id="home-content">'+
+	   '<div class="row" align="right">'+
+	      '<div class="col-md-2">'+
+	      '</div>'+
+	      '<div class="col-md-8">'+
+	      '<div id="action" align="center">'+
+	       '<p>أهلا وسهلا بك في نظام الموارد البشرية! </p>'+
+	       '<p>أعد هذا النظام باعتباره نموذجا تجريبيا طور بالاستعانة بمنهجية النمذجة فائقة السرعة</p>'+
+	       '<br>'+
+	       '<h4>ملخص لمحتوى النظام</h4>'+
+	       '<hr>'+
+	       '</div>'+
+	         '<div id="summary">'+
+	         '<div class="row m-t-25">'+
+
+             '<div class="col-sm-6 col-lg-3">'+
+               '<div class="overview-item overview-item--c1">'+
+                ' <div class="overview__inner">'+
+                   '<div class="overview-box clearfix">'+
+                    ' <div class="icon">'+
+                    '   <i class="zmdi zmdi-accounts"></i>'+
+                    ' </div>'+
+                    ' <div class="text">'+
+                    '   <h3>11</h3>'+
+                    '   <span>عدد الموظفين</span>'+
+                   '  </div>'+
+                 '  </div>'+
+                  '   <canvas id="widgetChart1" height="130px"></canvas>'+
+
+                 '</div>'+
+              ' </div>'+
+            ' </div>'+
+
+            ' <div class="col-sm-6 col-lg-3">'+
+              ' <div class="overview-item overview-item--c2">'+
+                ' <div class="overview__inner">'+
+                '   <div class="overview-box clearfix">'+
+                  '   <div class="icon">'+
+                  '     <i class="zmdi zmdi-run"></i>'+
+                    ' </div>'+
+                    ' <div class="text">'+
+                    '   <h3>4</h3>'+
+                    '   <span>عدد الإدارات</span>'+
+                  '   </div>'+
+                   '</div>'+
+                  '   <canvas id="widgetChart2" height="130px"></canvas>'+
+
+                ' </div>'+
+              ' </div>'+
+           '  </div>'+
+
+            ' <div class="col-sm-6 col-lg-3">'+
+              ' <div class="overview-item overview-item--c3">'+
+               '  <div class="overview__inner">'+
+                '   <div class="overview-box clearfix">'+
+                 '    <div class="icon">'+
+                 '      <i class="zmdi zmdi-hotel"></i>'+
+                  '   </div>'+
+                  '   <div class="text">'+
+                  '     <h3>3</h3>'+
+                  '     <span>عدد الإجازات</span>'+
+                  '   </div>'+
+                  ' </div>'+
+                   '  <canvas id="widgetChart3" height="130px"></canvas>'+
+
+               '  </div>'+
+            '   </div>'+
+           '  </div>'+
+
+            ' <div class="col-sm-6 col-lg-3">'+
+            '   <div class="overview-item overview-item--c4">'+
+              '   <div class="overview__inner">'+
+                '   <div class="overview-box clearfix">'+
+                  '   <div class="icon">'+
+                  '     <i class="zmdi zmdi-file-text"></i>'+
+                  '   </div>'+
+                  '   <div class="text">'+
+                     '  <h3>16</h3>'+
+                    '   <span>عدد الوظاىف  </span>'+
+                   '  </div>'+
+                 '  </div>'+
+                    ' <canvas id="widgetChart4" height="130px"></canvas>'+
+                   
+                 '</div>'+
+              ' </div>'+
+            ' </div>'+
+          
+	            '</div>'+
+	         '</div>'+
+	         '<br>'+
+	         '<hr>'+
+	            '<div style="background-color: lightyellow" align="right">'+
+	               '<b>تحديثات النظام:</b>'+
+	               '<div id="messages"></div>'+
+	         '</div>'+
+	      '</div>'+
+	   '</div>'+
+	'</div>'+
+	'</div>'
   });
 
   Vue.component('mypagination',{

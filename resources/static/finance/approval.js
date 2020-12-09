@@ -14,25 +14,22 @@ Vue.component('mynavbar', {
                
 
 
-            '<a class="nav-link" href="/Deployment/home/ar/">'+
+            '<a class="nav-link" href="/home.html">'+
 
              ' الرئيسية'+
               '<span class="sr-only">(current)</span>'+
             '</a>'+
-                    '<li class="nav-item">'+
-            '<a class="nav-link" href="#">لوحة التحكم</a>'+
-          '</li>'+
           '<li class="nav-item">'+
             '<a class="nav-link" href="./home.html"> النظام المالي</a>'+
           '</li>'+
            '<li class="nav-item">'+
             '<a class="nav-link" href="/hrs/home.html">نظام الموارد البشرية</a>'+
           '</li>'+
+
           '<li class="nav-item">'+
-            '<a class="nav-link" href="{% url '+'initiative:index'+' %}">المبادرات</a>'+
+            '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
           '</li>'+
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج   </a></li>'+
-             '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+
 
                          
 
@@ -72,6 +69,42 @@ Vue.component('mynavbar', {
     '</div> '+
 '</div>'});
 
+  Vue.component('myheader',{
+	  template: '<div id="header">'+
+
+	  '<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">'+
+
+	      '<div class="container">'+
+	       ' <a class="navbar-brand" href="/finance/home.html"> النظام المالي</a>'+
+	       ' <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#home-navbarResponsive" aria-controls="home-navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">'+
+	     ' <span class="navbar-toggler-icon"></span>'+
+	    '</button>'+
+	        '<div class="collapse navbar-collapse" id="home-navbarResponsive">'+
+	        '  <ul class="navbar-nav ml-auto">'+
+	               	
+	          '    <li class="nav-item">'+
+	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	          '  </li>'+
+	             ' <li class="nav-item">'+
+	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '</li>'+
+	             '  <li class="nav-item">'+
+	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	           ' </li>'+
+
+	            '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./journal.html">اليوميات</a>'+
+	           ' </li>'+
+
+	             
+	         ' </ul>'+
+	       ' </div>'+
+	     ' </div>'+
+	   ' </nav>'+
+	 
+	         ' </div>'+
+	           
+		  '</div>'});
 
 
 var tabledata = [];
@@ -83,7 +116,7 @@ var tableProgramdata = []
     	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: "2021"
     	            }).then(axios
-    	          	      .get('/rest/readChapters')
+    	          	      .get('/rest/ReadRequested')
     	        	      .then(response => (
 								  tabledata = response.data,
 								  table.setData(tabledata),
@@ -162,12 +195,12 @@ var table = new Tabulator("#example-table", {
 	{title:"المصاريف", hozAlign:"center", editor:"input",
 		columns:[
 			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input",  cellEdited:function(){this.redraw(true);}},
-			{title:"الطلب", field:"p_Requested", hozAlign:"center", editor:"input",  cellEdited:function(){this.redraw(true);}},
+			{title:"الطلب", field:"p_RequestedFund", hozAlign:"center", editor:"input",  cellEdited:function(){this.redraw(true);}},
 		],},
 	{title:"الإيرادات", hozAlign:"center", editor:"input",
 		columns:[
 			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input"},
-			{title:"الطلب", field:"p_Requested", hozAlign:"center", editor:"input"},
+			{title:"الطلب", field:"p_RequestedRevenue", hozAlign:"center", editor:"input"},
 		],},
 		{title:"مبررات", field:"p_Jestification",  hozAlign:"center",  editor:"input", widthGrow:2},
 		{title:"تحديد المصاريف", field:"p_ExpName", hozAlign:"center", editor:"select", editorParams:
@@ -175,7 +208,7 @@ var table = new Tabulator("#example-table", {
 				var options = {}
 				var row = cell.getRow();
 				var ce = row.getCell("p_Ceiling").getValue();
-				var re = row.getCell("p_Requested").getValue();
+				var re = row.getCell("p_RequestedFund").getValue();
 				options[re] = "الطلب";
 				options[ce] = "السقف";
 				return options;
@@ -228,66 +261,4 @@ $('.tabulator-tableHolder').on('scroll', function () {
 $('.tabulator-calcs-holder').on('scroll', function () {
     $('.tabulator-tableHolder').scrollLeft($(this).scrollLeft());
 });
-
-
-var tableProgram = new Tabulator("#program-table", {
-	height:"50%",
-	textDirection:"rtl",
-	headerSortElement:"<i class='fas fa-arrow-up'></i>",
-	layout:"fitColumns",
-	pagination:"local",
-	columnHeaderVertAlign:"bottom",
-    paginationSize:10,
-	data:tableProgramdata,
-	history:true,
-	
-    columns:[
-    {title:"رقم البرنامج", field:"p_Code"},
-	{title:"اسم البرنامج", field:"p_Name", hozAlign:"right"},
-	{title:"التكاليف", hozAlign:"center", editor:"input",
-		columns:[
-			{title:"السقف", field:"p_Ceiling", hozAlign:"center"},
-			{title:"الطلب", field:"p_Requested", hozAlign:"center"},
-		],},
-	{title:"المصاريف", hozAlign:"center", editor:"input",
-		columns:[
-			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input"},
-			{title:"الطلب", field:"p_Requested", hozAlign:"center", editor:"input"},
-		],},
-	{title:"الإيرادات", hozAlign:"center", editor:"input",
-		columns:[
-			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input"},
-			{title:"الطلب", field:"p_Requested", hozAlign:"center", editor:"input"},
-		],},
-		{title:"مبررات", field:"p_Jestification",  hozAlign:"center",  editor:"input",widthGrow:2},
-		{title:"الارتباطات", hozAlign:"center",
-		columns:[
-			{title:"رقم البرنامج", field:"p_Expenditure", hozAlign:"center", editor:"select", editorParams:{
-				"١":"١",
-				"٢":"٢"
-			}, cellEdited: function(cell){
-				var row = cell.getRow();
-				var price = row.getCell("p_Expenditure").getData();
-				var name = row.getCell("p_ExpName");
-				console.log(price.p_Expenditure)
-				console.log(name)
-							switch(price.p_Expenditure){
-								case "١":
-									name.setValue("مصروفات١", true);
-									console.log(name)
-									break;
-								case "٢":
-									name.setValue( "مصروفات٢", true);
-									break;
-								default:
-									return "";
-							}
-    },},
-			{title:"اسم البرنامج", field:"p_ExpName", hozAlign:"center"},
-			{title:"اسم البرنامج", field:"p_ExpName", hozAlign:"center"}
-		],},
-	]
-});
-
-
 

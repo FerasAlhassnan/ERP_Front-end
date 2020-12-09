@@ -9,7 +9,6 @@ Vue.component('mynavbar', {
         '<ul class="navbar-nav ml-auto my-2 my-lg-0">'+
 
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج   </a></li>'+
-             '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+
 
                          
 

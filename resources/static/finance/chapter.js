@@ -14,7 +14,7 @@ Vue.component('mynavbar', {
                
 
 
-            '<a class="nav-link" href="/Deployment/home/ar/">'+
+            '<a class="nav-link" href="/home.html">'+
 
              ' الرئيسية'+
               '<span class="sr-only">(current)</span>'+
@@ -30,6 +30,10 @@ Vue.component('mynavbar', {
           '</li>'+
           '<li class="nav-item">'+
             '<a class="nav-link" href="{% url '+'initiative:index'+' %}">المبادرات</a>'+
+          '</li>'+
+
+          '<li class="nav-item">'+
+            '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
           '</li>'+
              '<li class="nave-item"><a class="nav-link" href="logout"> تسجيل خروج   </a></li>'+
              '<li class="nave-item"><a class="nav-link" href="/Deployment/home/eng/"> English   </a></li>'+
