@@ -43,6 +43,22 @@
   .overview-box .icon {
     width: auto;
   }
+
+  .content-body{
+    padding-top: 20px;
+  }
+  .body-search{
+    padding: 0;
+  }
+  .body-search input{
+    margin-top: 10px;
+  }
+  .body-search > .row > .col-md-3{
+    padding: 0;
+  }
+  .content-body #buttons{
+    padding: 0;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -89,6 +105,25 @@
   }
   .overview-box .icon {
     width: auto;
+  }
+
+  .content-body{
+    padding-top: 20px;
+  }
+  .body-search{
+    padding: 0;
+  }
+  .body-search input{
+    margin-top: 10px;
+  }
+  .body-search > .row > .col-md-3{
+    padding: 0;
+  }
+  .content-body #buttons{
+    padding: 0;
+  }
+  .content-body #end {
+    padding: 0;
   }
 }
 
@@ -137,6 +172,22 @@
   }
   .overview-box .icon {
     width: auto;
+  }
+
+  .content-body{
+    padding-top: 20px;
+  }
+  .body-search{
+    padding: 0;
+  }
+  .body-search > .row > .col-md-3{
+    padding-right: 0;
+  }
+  .content-body #buttons{
+    padding: 0;
+  }
+  .content-body #end {
+    padding: 0;
   }
 }
 
@@ -229,6 +280,22 @@
   }
   .chart-percent-card h3 {
   }
+
+  .content-body{
+    padding-top: 20px;
+  }
+  .body-search{
+    padding: 0;
+  }
+  .body-search > .row > .col-md-3{
+    padding-right: 0;
+  }
+  .content-body #buttons{
+    padding: 0;
+  }
+  .content-body #end {
+    padding: 0;
+  }
 }
 
 @media (min-width: 1550.98px) {
@@ -275,5 +342,21 @@
   }
   .overview-box .icon {
     width: auto;
+  }
+
+  .content-body{
+    padding-top: 20px;
+  }
+  .body-search{
+    padding: 0;
+  }
+  .body-search > .row > .col-md-3{
+    padding-right: 0;
+  }
+  .content-body #buttons{
+    padding: 0;
+  }
+  .content-body #end {
+    padding: 0;
   }
 }
