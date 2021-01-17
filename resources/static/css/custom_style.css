@@ -1,4 +1,3 @@
-
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) { 
     .overview-item--c1,.overview-item--c2,.overview-item--c3,.overview-item--c4{
@@ -8,7 +7,8 @@
     .overview-chart{
        height: 115px;
     }
-   #widgetChart1,#widgetChart2,#widgetChart3,#widgetChart4{
+
+    #widgetChart1,#widgetChart2,#widgetChart3,#widgetChart4{
         position: absolute;
         bottom: 45px!important;
     }
