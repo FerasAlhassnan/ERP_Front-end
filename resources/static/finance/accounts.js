@@ -120,12 +120,13 @@ var tabledata = [];
     	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: "2021"
     	            }).then(axios
-    	          	      .get('/rest/readPrograms')
+      	          	      .get('/rest/ReadRequested').then(axios
+    	          	      .get('/rest/readChartAccounts')
     	        	      .then(response => (
 								  tabledata = response.data,
 								  table.setData(tabledata),
 								  console.log(tabledata)
-								  )))
+								  ))))
 	      
 		  }
 })
@@ -181,49 +182,69 @@ document.getElementById("filter-clear").addEventListener("click", function(){
 
 
 var table = new Tabulator("#example-table", {
-	height:"50%",
 	textDirection:"rtl",
 	headerSortElement:"<i class='fas fa-arrow-up'></i>",
-	layout:"fitColumns",
+	layout:"fitData",
 	pagination:"local",
 	columnHeaderVertAlign:"bottom",
-    paginationSize:10,
+    paginationSize:100,
 	data:tabledata,
 	history:true,
-	
-    columns:[{title:"رقم البرنامج", field:"p_Code"},
-    	{title:"اسم البرنامج", field:"p_Name", hozAlign:"right"},
-    	{title:"الوصف", field:"p_Description", hozAlign:"center", editor:"input"},
-    	{title:"تاريخ البدء", field:"p_StartDate",  hozAlign:"center",  editor:"input",widthGrow:2},
-    	{title:"المدة", field:"p_Duration", hozAlign:"center", editor:"input"},
-    	{title:"التكاليف المعتمدة", field:"p_DedicatedFunds", hozAlign:"center", editor:"input"},
-    	{title:"الارتباطات", 
-    		columns:[
-    	    	{title:"دائن", field:"p_TransferDebit", hozAlign:"center", editor:"input"},
-    	    	{title:"مدين", field:"p_TransferCredit", hozAlign:"center", editor:"input"}
-    		], hozAlign:"center"},
-	    {title:"المنصرف خلال الأعوام السابقة", field:"p_PastYearsSpending", hozAlign:"center", editor:"input"},
-	    {title:"الباقي من التكاليف", field:"p_RemainingFunds", hozAlign:"center", editor:"input"},
-	    {title:"اعتماد", field:"p_CurrentYearBudget", hozAlign:"center", editor:"input"},
-	    {title:"الارتباطات على التكاليف", field:"p_Commitments", hozAlign:"center", editor:"input"},
-	    {title:"النسبة المئوية", field:"p_Percentage", hozAlign:"center", editor:"input"}
-	
-	]
+	dataTree:true,
+    dataTreeStartExpanded:true,
+    columns:[
+    {title:"رقم التصنيف", field:"p_Code"},
+	{title:"اسم التصنيف", field:"p_Name", hozAlign:"right"},
+	{title:"الاعتماد الأصلي", field:"p_OpeningBalance", hozAlign:"center", editor:"input"},
+	{title:"تعزيز", field:"p_AddedFunds", hozAlign:"center", editor:"input"},
+	{title:"تخفيض", field:"p_Reduction", hozAlign:"center", editor:"input"},
+	{title:"تسوية / مناقلة مدينة", field:"p_TransferDebit", hozAlign:"center", editor:"input"},
+	{title:"تسوية / مناقلة دائنة", field:"p_TransferCredit", hozAlign:"center", editor:"input"},
+	{title:"صافي الاعتماد", field:"p_NetBalance", hozAlign:"center", editor:"input"},
+	{title:"المصروفات", field:"p_Spending", hozAlign:"center", editor:"input"},
+	{title:"الارتباطات", hozAlign:"center",
+		columns:[
+			{title:"الاجمالي الكلي", field:"p_GrandTotal", hozAlign:"center"},
+			{title:"الاعتمادات المستندية", field:"p_DocumantryCredits", hozAlign:"center"},
+			{title:"المستديمة العهد المؤقتة", field:"p_Custodies", hozAlign:"center"},
+		],},
+		{title:"المدفوع", field:"p_Paid", hozAlign:"center", editor:"input"},	
+		{title:"الوفر", field:"p_RemainingBalance", hozAlign:"center", editor:"input"},	
+		{title:"نسبة", field:"p_Percentage", hozAlign:"center", editor:"input"},
+	],
+	rowClick: function (e, row) {
+		var data = row.getData();
+		axios.post('/rest/saveAccount', {
+			p_Code: data.p_Code,
+			p_Name: data.p_Name,
+			p_OpeningBalance: data.p_OpeningBalance,
+			p_AddedFunds: data.p_AddedFunds,
+			p_Reduction: data.p_Reduction,
+			p_TransferDebit: data.p_TransferDebit,
+			p_TransferCredit: data.p_TransferCredit,
+			p_NetBalance: data.p_NetBalance,
+			p_Spending: data.p_Spending,
+			p_GrandTotal: data.p_GrandTotal,
+			p_DocumantryCredits: data.p_DocumantryCredits,
+			p_Custodies: data.p_Custodies,
+			p_Paid: data.p_Paid,
+			p_RemainingBalance: data.p_RemainingBalance,
+			p_Percentage: data.p_Percentage
+		}).then(
+		axios.post('/rest/saveTaccount', {
+			p_Code: data.p_Code
+		}).then(
+		window.location.href = "./account_detail.html"
+	)
+	)
+    },
 });
 
 
 
 
 
-
-//undo button
-document.getElementById("history-undo").addEventListener("click", function(){
-  table.undo();
-});
-
-document.getElementById("history-redo").addEventListener("click", function(){
-  table.redo();
-});
+;
 
 //redo button
 var the_Function = function(cell, formatterParams, onRendered){ //plain text value
@@ -238,17 +259,6 @@ return "<i class='fa fa-print'>function_trigger</i>";
 
 
 
-document.getElementById("add-row").addEventListener("click", function(){
-	var row = {p_Code: "-1", p_Name: "اسم", p_Ceiling: "0", p_Requested: "0"};
-	table.addRow(row);
-	tabledata.push(row);
-})
-
-document.getElementById("add-it-to-backend").addEventListener("click", function(){
-	axios.post("/rest/array", {
-		array: tabledata
-	})
-})
 
 
 $('.tabulator-tableHolder').on('scroll', function () {

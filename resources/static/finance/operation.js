@@ -82,21 +82,22 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	            '  <a class="nav-link" href="./budget_home.html">الميزانية</a>'+
 	          '  </li>'+
 	             ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '  <a class="nav-link" href="./expenses_home.html">التقرير المالي</a>'+
 	            '</li>'+
 	             '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	            '  <a class="nav-link" href="./program_home.html">البرامج</a>'+
 	           ' </li>'+
 
 	            '<li class="nav-item">'+
-	             ' <a class="nav-link" href="./operation.html">مراجعة الميزانية الحالية</a>'+
+	             ' <a class="nav-link" href="./journal_home.html">اليوميات</a>'+
 	           ' </li>'+
-	            ' <li class="nav-item">'+
-              '  <a class="nav-link" href="./approval.html">مراجعة الميزانية القادمة</a>'+
-              '</li>'+
+	           
+	           '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./account_home.html">الحسابات</a>'+
+	           ' </li>'+
 
 
 	             
@@ -108,7 +109,6 @@ Vue.component('mynavbar', {
 	         ' </div>'+
 	           
 		  '</div>'});
-
 
 var tabledata = [];
 var tableProgramdata = []

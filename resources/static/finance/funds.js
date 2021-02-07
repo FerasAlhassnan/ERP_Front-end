@@ -117,15 +117,27 @@ Vue.component('mynavbar', {
 
 // vue ==========================================
     var app = new Vue({
-      el: '#body',
-      data: {
-    	  allBudgets:null,
-    	  id: null,
-    	  chapter: null,
-        section: null, 
-        type: null,
-        title: null
-      }
+    	 el: '#body',
+	      data:{
+	    	  account: '',
+	    	  amount: '',
+	    	  accounts: [],
+	      },
+	      mounted () {
+	    	  axios.get('/rest/readChartAccounts').then(response => (
+	    	        	    		  this.accounts = response.data,
+									  console.log(this.accounts)
+									  ))
+		      
+			  },
+			  methods: {
+					submitForm : function(val){
+						axios.post('/rest/addFunds', {
+							p_Code: this.account,
+							p_Amount: this.amount,
+						})
+					}
+				}
     });
     
     

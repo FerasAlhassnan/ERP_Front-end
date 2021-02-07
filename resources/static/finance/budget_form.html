@@ -25,7 +25,7 @@
    		<link id="stylecss" href="../css/custom_style_finance.css" rel="stylesheet">
    	
    	
-   	 
+   	  
 <style>
   #body {
   min-height: 94.5vh;
@@ -42,7 +42,9 @@
   color:white;
   width: 100%;
 }
- .modal {
+
+
+    .modal {
       display: none;
       /* Hidden by default */
       position: fixed;
@@ -168,23 +170,79 @@
       transform: scaleY(-1);
       /* flip the icon vertically so the arrow points down */
     }
+form{
+	width: 100%;
+}
+.form-inline {  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
 
+.form-inline p {
+  margin: 5px 10px 5px 0;
+  color: black;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+
+@media (max-width: 900px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+  
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.button{
+display: inline-block;
+    text-align: center;
+    border-radius: 2px;
+    line-height: 19px;
+    cursor: pointer;
+    margin-left: -1px;
+    padding: 4px 15px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-image: -webkit-linear-gradient(top,#f8f8f8,#f1f1f1);
+    border: 1px solid #c6c6c6;
+    color: #000;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+.button:active{
+background-color: #f6f6f6;
+    background-image: -webkit-linear-gradient(top,#f6f6f6,#f1f1f1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    }
 
 </style>
+   	
 </head>
 <body>
 	<div id="body">
 	<mynavbar></mynavbar>
 	<myheader></myheader>
-	<div id="content">
+	 <div id="content">
       <div class="row">
         <div class="col-md-2">
-          <ul class="list-unstyled">
+         <ul class="list-unstyled">
                 <br> <br> <br>
 
                 <li><a href="./home.html">الرئيسية</a></li>
                 <br>
-                <li><a href="./expenses.html">استعراض التقرير المالي</a> </li>
+                <li><a href="./budget.html">استعراض الميزانية</a> </li>
+                <li><a href="#">استعراض الميزانيات سابقة</a> </li>
+                <li><a href="./new_budget_form.html">إنشاء ميزانية جديدة</a> </li>
         </ul>
         </div>
         <div class="col-md-8 col-sm-12 col-xs-12 content-body">
@@ -192,49 +250,122 @@
             <br>
 			<p>
 				<a href="./home.html">النظام المالي</a> / 
-				<a href="./expenses_home.html">التقرير المالي</a> / 
-				<a href="./expenses.html">استعراض التقرير المالي</a>
+				<a href="./budget.html">الميزانية</a> / 
+				<a href="./budget_form.html">إنشاء ميزانية</a> 
 			</p>
-		
 			</div>
 		<hr>
 		<div class="col-md-3 col-sm-12 col-xs-12">
-		<h3>التقرير المالي</h3>
+		<h3>إنشاء ميزانية</h3>
             </div>
             <hr>
           <div class="col-md-12 col-sm-12 col-xs-12 body-search" id="search">
+             <h3>بند رقم: {{}}</h3>
+             <hr>
+             <h4>التصنيف الاقتصادي: {{}}</h4>
             <div class="row">
-              <div class="col-md-3 col-sm-12 col-xs-12">
-                <select class="form-control" id="filter-field">
-                 <option></option>
-    <option value="p_Code">رقم التصنيف الاقتصادي</option>
-    <option value="p_Name">اسم التصنيف الاقتصادي</option>
-    <option value="p_Ceiling">السقف</option>
-    <option value="p_Requested">الطلب</option>
-                </select>
-              </div>
-              <div class="col-md-3 col-sm-12 col-xs-12">
-                <input class="form-control" id="filter-value" type="text" placeholder="البحث">
-                </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                <button class="btn btn-danger" id="filter-clear">مسح</button>
-              </div>
+            <form>
+					<div class="form-inline">
+						<label>جديد:</label>
+						<input type="checkbox" name="p_Name"  />
+						</div>
+						<div class="form-inline">
+						<label>نفقات:</label>
+						<label style="margin-right: 6%">السقف:</label>
+						<input type="text" name="p_Name"/>
+						<label style="margin-right: 6%">الطلب:</label>
+						<input type="text" name="p_Name"/>
+						</div>
+						<div class="form-inline">
+						<label>ايرادات:</label>
+						<label style="margin-right: 6%">السقف:</label>
+						<input type="text" name="p_Name"/>
+						<label style="margin-right: 6%">الطلب:</label>
+						<input type="text" name="p_Name"/>
+						</div>
+						
+					</form>
             </div>
+            
           </div>
-          <hr>
+          <h5>مشاريع:</h5>
           <div class="col-md-12 col-sm-12 col-xs-12" id="example-table"></div>
+          <hr>
+           <div class="col-md-12 col-sm-12 col-xs-12 body-search" id="search">
+             <h4>التصنيف الاقتصادي: {{}}</h4>
+            <div class="row">
+            <form>
+					<div class="form-inline">
+						<label>جديد:</label>
+						<input type="checkbox" name="p_Name"  />
+						</div>
+						<div class="form-inline">
+						<label>نفقات:</label>
+						<label style="margin-right: 6%">السقف:</label>
+						<input type="text" name="p_Name"/>
+						<label style="margin-right: 6%">الطلب:</label>
+						<input type="text" name="p_Name"/>
+						</div>
+						<div class="form-inline">
+						<label>ايرادات:</label>
+						<label style="margin-right: 6%">السقف:</label>
+						<input type="text" name="p_Name"/>
+						<label style="margin-right: 6%">الطلب:</label>
+						<input type="text" name="p_Name"/>
+						</div>
+						
+					</form>
+            </div>
+            
+          </div>
+          <h5>مشاريع:</h5>
+          <div class="col-md-12 col-sm-12 col-xs-12" id="example-table-s"></div>
+          <hr>
+          <div class="col-md-12 col-sm-12 col-xs-12 body-search" id="search">
+             <h4>التصنيف الاقتصادي: {{}}</h4>
+            <div class="row">
+            <form>
+					<div class="form-inline">
+						<label>جديد:</label>
+						<input type="checkbox" name="p_Name"  />
+						</div>
+						<div class="form-inline">
+						<label>نفقات:</label>
+						<label style="margin-right: 6%">السقف:</label>
+						<input type="text" name="p_Name"/>
+						<label style="margin-right: 6%">الطلب:</label>
+						<input type="text" name="p_Name"/>
+						</div>
+						<div class="form-inline">
+						<label>ايرادات:</label>
+						<label style="margin-right: 6%">السقف:</label>
+						<input type="text" name="p_Name"/>
+						<label style="margin-right: 6%">الطلب:</label>
+						<input type="text" name="p_Name"/>
+						</div>
+						
+					</form>
+            </div>
+            
+          </div>
+          <h5>مشاريع:</h5>
+          <div class="col-md-12 col-sm-12 col-xs-12" id="example-table-ss"></div>
+          <hr>
+          
+						<input class="button" type="submit" value="ارسال">
+						<br><br><br><br>
         </div>
       </div>
     </div>
 	
 	
-	
-
 <myfooter id="footer"></myfooter>
  </div>
 
-<script type="text/javascript" src="./expenses.js"></script>
 
- 
+</div>
+<script type="text/javascript" src="./budget_form.js"></script>
+
+
 </body>
 </html>

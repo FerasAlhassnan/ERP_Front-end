@@ -85,16 +85,21 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	            '  <a class="nav-link" href="./budget_home.html">الميزانية</a>'+
 	          '  </li>'+
 	             ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '  <a class="nav-link" href="./expenses_home.html">التقرير المالي</a>'+
 	            '</li>'+
 	             '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	            '  <a class="nav-link" href="./program_home.html">البرامج</a>'+
 	           ' </li>'+
+
+	            '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./journal_home.html">اليوميات</a>'+
+	           ' </li>'+
+	           
 	           '<li class="nav-item">'+
-	             ' <a class="nav-link" href="./journal.html">اليوميات</a>'+
+	             ' <a class="nav-link" href="./account_home.html">الحسابات</a>'+
 	           ' </li>'+
 
 
@@ -117,7 +122,9 @@ var tabledata = [];
     	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: "2021"
     	            }).then(axios
-    	          	      .get('/rest/ReadRequested')
+    	          	      .put('/rest/readBudgetAccount', {
+    	          	    	  p_Code: '٢١'
+    	          	      })
     	        	      .then(response => (
 								  tabledata = response.data,
 								  table.setData(tabledata),
@@ -181,7 +188,6 @@ var table = new Tabulator("#example-table", {
 	height:"50%",
 	textDirection:"rtl",
 	headerSortElement:"<i class='fas fa-arrow-up'></i>",
-	layout:"fitColumns",
 	pagination:"local",
 	columnHeaderVertAlign:"bottom",
     paginationSize:10,
@@ -189,19 +195,70 @@ var table = new Tabulator("#example-table", {
 	history:true,
 	
     columns:[
-    {title:"رقم البند", field:"p_Code", editor:"input"},
-	{title:"اسم البند", field:"p_Name", hozAlign:"right", editor:"input"},
-	{title:"المصاريف", hozAlign:"center", editor:"input",
-		columns:[
-			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input"},
-			{title:"الطلب", field:"p_RequestedFund", hozAlign:"center", editor:"input"},
-		],},
-	{title:"الإيرادات", hozAlign:"center", editor:"input",
-		columns:[
-			{title:"السقف", field:"p_Ceiling", hozAlign:"center", editor:"input"},
-			{title:"الطلب", field:"p_RequestedRevenue", hozAlign:"center", editor:"input"},
-		],},
-		{title:"مبررات", field:"p_Jestification",  hozAlign:"center",  editor:"input", widthGrow:2}
+    	 {title:"رقم البند", field:"p_Code"},
+    		{title:"اسم البند", field:"p_Name", hozAlign:"right"},
+    		{title:"الاعتماد المطلوب (السقف)",
+    			columns:[
+    				{title:"الميزانية", field:"..",
+    					columns:[
+    						{title:"نفقات عامة",field:"..",
+    							columns:[
+    								{title:"قائم", field:"..", editor:"input", bottomCalc:"sum"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    						{title:"مشاريع وبرامج", field:"..",
+    							columns:[
+    								{title:"قائم", field:"..", editor:"input"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    					],},
+    				{title:"الايراد", field:"..",
+    					columns:[
+    						{title:"نفقات عامة", field:"..",
+    							columns:[
+    								{title:"قائم", field:"p_CeilingRevenue", editor:"input"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    						{title:"مشاريع وبرامج", field:"..",
+    							columns:[
+    								{title:"قائم", field:"..", editor:"input"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    					],},
+    			],},
+    		{title:"الاجمالي حسب السقف", field:"p_Ceiling",  hozAlign:"center", editor:"input", bottomCalc:"sum", widthGrow:2.2},
+    		{title:"الاعتماد المطلوب (الطلب)",field:"..",
+    			columns:[
+    				{title:"الميزانية",field:"..",
+    					columns:[
+    						{title:"نفقات عامة", field:"..",
+    							columns:[
+    								{title:"قائم", field:"p_RequestedRevenue", editor:"input", bottomCalc:"sum"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    						{title:"مشاريع وبرامج", field:"..",
+    							columns:[
+    								{title:"قائم", field:"..", editor:"input"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    					],},
+    				{title:"الايراد", field:"..",
+    					columns:[
+    						{title:"نفقات عامة", field:"..",
+    							columns:[
+    								{title:"قائم", field:"..", editor:"input"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    						{title:"مشاريع وبرامج", field:"..",
+    							columns:[
+    								{title:"قائم", field:"..", editor:"input"},
+    								{title:"جديد", field:"..", editor:"input"}
+    							],},
+    					],},
+    			],},
+    			{title:"الاجمالي حسب الطلب", field:"p_Requested",  hozAlign:"center",  editor:"input", bottomCalc:"sum", widthGrow:2},
+    			{title:"الفرق", field:"..",  hozAlign:"center",  editor:"input"},
+    			{title:"النسبة", field:"..",  hozAlign:"center",  editor:"input"}
 	],
     initialSort:[
         {column:"p_Code", dir:"asc"}, //sort by this first
@@ -210,28 +267,8 @@ var table = new Tabulator("#example-table", {
 
 
 
-//undo button
-document.getElementById("history-undo").addEventListener("click", function(){
-  table.undo();
-});
-
-document.getElementById("history-redo").addEventListener("click", function(){
-  table.redo();
-});
 
 
-
-document.getElementById("add-row").addEventListener("click", function(){
-	var row = {p_Code: "-1", p_Name: "اسم", p_Ceiling: "0", p_Requested: "0"};
-	table.addRow(row);
-	tabledata.push(row);
-})
-
-document.getElementById("add-it-to-backend").addEventListener("click", function(){
-	axios.post("/rest/array", {
-		array: tabledata
-	})
-})
 
 
 $('.tabulator-tableHolder').on('scroll', function () {

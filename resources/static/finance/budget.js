@@ -83,16 +83,21 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	            '  <a class="nav-link" href="./budget_home.html">الميزانية</a>'+
 	          '  </li>'+
 	             ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '  <a class="nav-link" href="./expenses_home.html">التقرير المالي</a>'+
 	            '</li>'+
 	             '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	            '  <a class="nav-link" href="./program_home.html">البرامج</a>'+
 	           ' </li>'+
+
+	            '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./journal_home.html">اليوميات</a>'+
+	           ' </li>'+
+	           
 	           '<li class="nav-item">'+
-	             ' <a class="nav-link" href="./journal.html">اليوميات</a>'+
+	             ' <a class="nav-link" href="./account_home.html">الحسابات</a>'+
 	           ' </li>'+
 
 
@@ -109,7 +114,6 @@ Vue.component('mynavbar', {
 
 
 
-
 var tabledata = [];
 
  var app = new Vue({
@@ -118,14 +122,22 @@ var tabledata = [];
     	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: "2021"
     	            }).then(axios
-    	          	      .get('/rest/ReadRequested')
+    	          	      .get('/rest/readBudgetAccounts')
     	        	      .then(response => (
 								  tabledata = response.data,
 								  table.setData(tabledata),
 								  console.log(tabledata)
 								  )))
 	      
-		  }
+		  },
+	methods:{
+		opeBudget: function(){
+			axios.post('/rest/operationalize', {
+				p_Year: "2021"
+			}).then(
+					alert("تم تشغيل الميزاينة"))
+		}
+	}
 })
 
 
@@ -176,7 +188,7 @@ document.getElementById("filter-clear").addEventListener("click", function(){
 });
 
 
-var table = new Tabulator("#example-table-theme", {
+var table = new Tabulator("#example-table", {
 	height:"50%",
 	textDirection:"rtl",
 	headerSortElement:"<i class='fas fa-arrow-up'></i>",
@@ -196,26 +208,26 @@ var table = new Tabulator("#example-table-theme", {
 				columns:[
 					{title:"نفقات عامة",field:"..",
 						columns:[
-							{title:"قائم", field:"p_Ceiling", editor:"input", bottomCalc:"sum"},
-							{title:"جديد", field:"p_Ceiling", editor:"input"}
+							{title:"قائم", field:"..", editor:"input", bottomCalc:"sum"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 					{title:"مشاريع وبرامج", field:"..",
 						columns:[
-							{title:"قائم", field:"p_Ceiling", editor:"input"},
-							{title:"جديد", field:"p_Ceiling", editor:"input"}
+							{title:"قائم", field:"..", editor:"input"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 				],},
 			{title:"الايراد", field:"..",
 				columns:[
 					{title:"نفقات عامة", field:"..",
 						columns:[
-							{title:"قائم", field:"p_Ceiling", editor:"input"},
-							{title:"جديد", field:"p_Ceiling", editor:"input"}
+							{title:"قائم", field:"p_CeilingRevenue", editor:"input"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 					{title:"مشاريع وبرامج", field:"..",
 						columns:[
-							{title:"قائم", field:"p_Ceiling", editor:"input"},
-							{title:"جديد", field:"p_Ceiling", editor:"input"}
+							{title:"قائم", field:"..", editor:"input"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 				],},
 		],},
@@ -226,43 +238,70 @@ var table = new Tabulator("#example-table-theme", {
 				columns:[
 					{title:"نفقات عامة", field:"..",
 						columns:[
-							{title:"قائم", field:"p_Requested", editor:"input", bottomCalc:"sum"},
-							{title:"جديد", field:"p_RequestedFund", editor:"input"}
+							{title:"قائم", field:"p_RequestedRevenue", editor:"input", bottomCalc:"sum"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 					{title:"مشاريع وبرامج", field:"..",
 						columns:[
-							{title:"قائم", field:"p_Requested", editor:"input"},
-							{title:"جديد", field:"p_Requested", editor:"input"}
+							{title:"قائم", field:"..", editor:"input"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 				],},
 			{title:"الايراد", field:"..",
 				columns:[
 					{title:"نفقات عامة", field:"..",
 						columns:[
-							{title:"قائم", field:"p_Requested", editor:"input"},
-							{title:"جديد", field:"p_RequestedRevenue", editor:"input"}
+							{title:"قائم", field:"..", editor:"input"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 					{title:"مشاريع وبرامج", field:"..",
 						columns:[
-							{title:"قائم", field:"p_Requested", editor:"input"},
-							{title:"جديد", field:"p_Requested", editor:"input"}
+							{title:"قائم", field:"..", editor:"input"},
+							{title:"جديد", field:"..", editor:"input"}
 						],},
 				],},
 		],},
 		{title:"الاجمالي حسب الطلب", field:"p_Requested",  hozAlign:"center",  editor:"input", bottomCalc:"sum", widthGrow:2},
 		{title:"الفرق", field:"..",  hozAlign:"center",  editor:"input"},
-		{title:"النسبة", field:"..",  hozAlign:"center",  editor:"input"}
+		{title:"النسبة", field:"..",  hozAlign:"center",  editor:"input"}/*,
+		{title:"اعتماد السقف/الطلب", formatter:function buttonFormatter(cell, formatterParams, onRendered){
+			 onRendered(function(){
+		    var cellEl = cell.getElement(); //get cell DOM element
+
+		    // create elements
+		    var linkBut = document.createElement("button");
+		    linkBut.innerHTML = "السقف";
+		    var sec = document.createElement("button");
+		    sec.innerHTML = "الطلب";
+
+		    //add event bindings
+		    linkBut.addEventListener("click", function(e){
+		    	axios.post('/rest/acceptCeiling', {
+		    		  p_Code: cell.getRow().getData().p_Code
+  	            });
+		    	  alert("تم اعتماد السقف للبند: " +  cell.getRow().getData().p_Name);
+    	            linkBut.disabled = true;
+    	            sec.disabled = true;
+		    });
+		    sec.addEventListener("click", function(e){
+		    	 axios.post('/rest/acceptRequested', {
+		    		  p_Code: cell.getRow().getData().p_Code
+   	            });
+		    	 alert("تم اعتماد الطلب للبند: " +  cell.getRow().getData().p_Name);
+		    	 linkBut.disabled = true;
+ 	            sec.disabled = true;
+		    });
+
+		    //add buttons to cell
+		    cellEl.appendChild(linkBut);
+		    cellEl.appendChild(sec);
+			 })},  hozAlign:"center"}*/
     ],
 });
 
-//undo button
-document.getElementById("history-undo").addEventListener("click", function(){
-  table.undo();
-});
 
-document.getElementById("history-redo").addEventListener("click", function(){
-  table.redo();
-});
+
+
 
 //redo button
 var the_Function = function(cell, formatterParams, onRendered){ //plain text value
@@ -274,62 +313,6 @@ var the_Function = function(cell, formatterParams, onRendered){ //plain text val
 return "<i class='fa fa-print'>function_trigger</i>";
 };
 
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("add-column");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-document.getElementById("submit-column").addEventListener("click", function(){
-	modal.style.display = "none";
-	var column = document.getElementById("new-column").value;
-   table.addColumn({title:column, field: column ,width:100, align:"center",editor:"input"})
-   for(var i = 0 ; i < tabledata.length; i++){
-	   table.updateData([{id:(i+1), Z:(i+10)}]);
-   }
-   
-   console.log(tabledata)
-});
-
-document.getElementById("submit").addEventListener("click", function(){
-	document.getElementById("table-after-edit").innerHTML = "";
-	for(var i = 0; i < tabledata.length; i++){
-	document.getElementById("table-after-edit").innerHTML += JSON.stringify(tabledata[i]) + "<br>";
-	}
-})
-
-document.getElementById("add-row").addEventListener("click", function(){
-	var row = {p_Code: "-1", p_Name: "اسم", p_Ceiling: "0", p_Requested: "0"};
-	table.addRow(row);
-	tabledata.push(row);
-})
-
-document.getElementById("add-it-to-backend").addEventListener("click", function(){
-	axios.post("/rest/array", {
-		array: tabledata
-	})
-})
 
 
 $('.tabulator-tableHolder').on('scroll', function () {

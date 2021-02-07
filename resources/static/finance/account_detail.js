@@ -68,6 +68,7 @@ Vue.component('mynavbar', {
     '</div> '+
 '</div>'});
 
+  
   Vue.component('myheader',{
 	  template: '<div id="header">'+
 
@@ -112,20 +113,67 @@ Vue.component('mynavbar', {
 
 
 
-
-
-
-// vue ==========================================
-    var app = new Vue({
+ var app = new Vue({
       el: '#body',
-      data: {
-    	  allBudgets:null,
-    	  id: null,
-    	  chapter: null,
-        section: null, 
-        type: null,
-        title: null
-      }
-    });
-    
-    
+      data:{
+    	  account: [],
+    	  fundsAmount: '',
+    	  reduceAmount: '',
+    	  transferAmount: '',
+    	  transferFrom: '',
+    	  transferDate: '',
+    	  transferDescription: '',
+    	  allAccounts: [],
+    	  accountTable: [],
+      },
+      mounted () {
+    	  axios.get('/rest/readSavedAccount')
+    	        	      .then(response => (
+								  this.account = response.data,
+								  console.log(this.account)
+								  )),
+		  axios.get('/rest/readTAccount')
+		    	        .then(response => (
+		    	        	     this.accountTable = response.data,
+		    	        	     console.log(this.accountTable)
+								 )),
+		  axios.get('/rest/readChartAccounts')
+		  				.then(response => (
+		  						this.allAccounts = response.data,
+		  						console.log(this.allAccounts)
+		  					))
+	      
+		  },
+	methods: {
+		submitFunds: function(val){
+			axios.post('/rest/addFunds', {
+				p_Code:  this.account[0].p_Code,
+				p_Amount: this.fundsAmount,
+			})
+		},
+		submitReduce: function(val){
+			axios.post('/rest/reduceFunds', {
+				p_Code:  this.account[0].p_Code,
+				p_Amount: this.reduceAmount,
+			})
+		},
+		Taccount: function(val){
+			axios.post('/rest/saveTaccount', {
+				p_Code: this.account[0].p_Code
+			}).then(
+			window.location.href = "./account_T_table.html"
+		)
+		},
+		submitTransfer: function(val){
+			axios.post('/rest/accountTransfers',{
+				p_Code: this.transferFrom,
+				p_CodeTo: this.account[0].p_Code,
+				p_Amount: this.transferAmount,
+				p_Date: parseInt(this.transferDate),
+				p_Description: this.transferDescription
+			})
+		}
+	}
+		  
+})
+

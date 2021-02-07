@@ -128,7 +128,7 @@
 
 			<div class="row">
 				<div class="col-md-2">
-				<ul class="list-unstyled">
+					<ul class="list-unstyled">
                 <br> <br> <br>
 
                 <li><a href="./home.html">الرئيسية</a></li>
@@ -136,11 +136,12 @@
                 <li><a href="./journal_transfer.html">استعراض جدول المناقلات</a> </li>
                 <li><a href="./journal_form.html">إنشاء جدول يوميات</a> </li>
                 <li><a href="./journal_expense_form.html">إنشاء جدول يوميات المصروفات</a> </li>
+                <li><a onclick="createSalary()">إنشاء جدول يوميات الرواتب</a> </li>
         </ul>
-        
+				
+				
 				</div>
 				<div class="col-md-8">
-					<hr>
 					<div id="summary">
 						<div class="row m-t-25">
 
@@ -222,7 +223,7 @@
 						</div>
 					</div>
 
-					<hr>
+
 					<div class="col-md-12">
 						<div class="row">
 
@@ -298,6 +299,9 @@
 							</div>
 						</div>
 					</div>
+
+					<h3 id="title-budget"></h3>
+					
 				</div>
 			</div>
 
@@ -305,12 +309,16 @@
 		<myfooter id="footer"></myfooter>
 	</div>
 
-	<script src="./journal.js"></script>
+	<script src="./home.js"></script>
 	<!-- I put my js code inside this file -->
 	<script src="../js/finance_main.js"></script>
 	<!-- TODO : You should check this file again -->
 	<!-- <script src="../js/main.js"></script> -->
 	<script>
+	function createSalary(){
+		axios.get('/rest/createSalaryJournal').then(
+				alert("تم إنشاء جدول يوميات الرواتب"))
+	}
 		$(function () {
 			// TODO : This way to add custom code inside vuejs template isn't efficent 
 			// We can buid it as vue js template after that we can add it again into content [vue template]

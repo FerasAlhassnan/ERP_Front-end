@@ -83,16 +83,21 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	            '  <a class="nav-link" href="./budget_home.html">الميزانية</a>'+
 	          '  </li>'+
 	             ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '  <a class="nav-link" href="./expenses_home.html">التقرير المالي</a>'+
 	            '</li>'+
 	             '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	            '  <a class="nav-link" href="./program_home.html">البرامج</a>'+
 	           ' </li>'+
+
+	            '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./journal_home.html">اليوميات</a>'+
+	           ' </li>'+
+	           
 	           '<li class="nav-item">'+
-	             ' <a class="nav-link" href="./journal.html">اليوميات</a>'+
+	             ' <a class="nav-link" href="./account_home.html">الحسابات</a>'+
 	           ' </li>'+
 
 
@@ -106,23 +111,37 @@ Vue.component('mynavbar', {
 	           
 		  '</div>'});
 
-
 var tabledata = [];
 
  var app = new Vue({
       el: '#body',
-      mounted () {
-    	  axios.post('/rest/saveBudgetYear', {
-    	    		  p_Year: "2021"
-    	            }).then(axios
-    	          	      .get('/rest/readChapters')
-    	        	      .then(response => (
-								  tabledata = response.data,
-								  table.setData(tabledata),
-								  console.log(tabledata)
-								  )))
-	      
-		  }
+      data:{
+    	  p_Code: '',
+    	  p_Name: '',
+    	  p_Description: '',
+    	  p_Duration: '',
+    	  p_StartDate: '',
+    	  p_DedicatedFunds: '',
+    	  p_Account: ''
+      },
+      methods: {
+        submitProduct: function () {
+          console.log({ nid: parseInt(this.nid) }) 
+      	  axios.post('/rest/createProgram', {
+      		  	p_Code: this.p_Code,
+	      		p_Name: this.p_Name,
+	      		p_Description: this.p_Description,
+	      		p_Duration: parseInt(this.p_Duration),
+	      		p_StartDate: parseInt(this.p_StartDate),
+	      		p_DedicatedFunds: parseInt(this.p_DedicatedFunds),
+	      		p_Account: this.p_Account
+              }).then(response => {
+                  window.location.href = '/finance/home.html';
+              }).catch(error => {
+                  console.log(error.response)
+              });
+          }
+        }
 })
 
 

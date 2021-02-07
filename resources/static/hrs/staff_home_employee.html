@@ -12,6 +12,9 @@
     <link id="stylecss" href="../style.css" rel="stylesheet">
     <link href="../css/theme.css" rel="stylesheet" media="all">
     <link href="../css/custom_style.css" rel="stylesheet" media="all">
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
       #app {
         min-height: 95.5vh;
@@ -67,13 +70,12 @@
           <div class="col-md-2">
             <ul class="list-unstyled">
               <br> <br> <br>
-              <li><a href="./home.html">الرئيسية</a></li>
-              <br>
-              <li><a href="./staff_list.html">استعراض الموظفين</a></li>
-              <li><a href="./staff_form.html">إضافة موظف</a> </li>
-              <li><a href="./staff_leave_form.html">طلب اجازة</a> </li>
-              <li><a href="./manage_leave.html">الموافقة على اجازة</a> </li>
-              <li><a href="./staff_bonus_form.html">اضافة بدل لموظف</a></li>
+               <li><a href="/hrs/home.html">الرئيسية</a></li>
+                <br>
+                <li class="underline" @click="seeID" v-bind:id="id" style="color: #007bff">الملف الشخصي</li>
+                <br>
+                <li><a href="./staff_list.html">استعراض الموظفين</a></li>
+                 <li><a href="./staff_leave_form.html">طلب اجازة</a> </li>
             </ul>
           </div>
           <div class="col-md-8">
@@ -171,7 +173,7 @@
 </body>
 
             <script class="vue"></script>
-    <script src="./home.js"></script>
+    <script src="./home_employee_role.js"></script>
     <!-- I put my js code inside this file -->
     <script src="../js/staff_main.js"></script>
     <!-- TODO : You should check this file again -->

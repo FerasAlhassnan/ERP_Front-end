@@ -82,16 +82,21 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./budget.html">الميزانية</a>'+
+	            '  <a class="nav-link" href="./budget_home.html">الميزانية</a>'+
 	          '  </li>'+
 	             ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./expenses.html">التقرير المالي</a>'+
+	            '  <a class="nav-link" href="./expenses_home.html">التقرير المالي</a>'+
 	            '</li>'+
 	             '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./program.html">البرامج</a>'+
+	            '  <a class="nav-link" href="./program_home.html">البرامج</a>'+
 	           ' </li>'+
+
+	            '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./journal_home.html">اليوميات</a>'+
+	           ' </li>'+
+	           
 	           '<li class="nav-item">'+
-	             ' <a class="nav-link" href="./journal.html">اليوميات</a>'+
+	             ' <a class="nav-link" href="./account_home.html">الحسابات</a>'+
 	           ' </li>'+
 
 
@@ -108,7 +113,6 @@ Vue.component('mynavbar', {
 
 
 
-
 var tabledata = [];
 
  var app = new Vue({
@@ -117,7 +121,7 @@ var tabledata = [];
     	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: "2021"
     	            }).then(axios
-    	          	      .get('/rest/ReadRequested')
+    	          	      .get('/rest/readSalaryJournal')
     	        	      .then(response => (
 								  tabledata = response.data,
 								  table.setData(tabledata),
@@ -188,24 +192,16 @@ var table = new Tabulator("#example-table-theme", {
 	layout:"fitColumns",
 	
     columns:[
-    {title:"التاريخ", field:"p_Date"},
-	{title:"الحساب", field:"p_Account", hozAlign:"right"},
-	{title:"رقم الفاتورة", field:"p_Invoice",  hozAlign:"center", editor:"input", bottomCalc:"sum", widthGrow:2.2},
-	{title:"الحساب المدين", field:"p_DRAccount",  hozAlign:"center", editor:"input", bottomCalc:"sum", widthGrow:2.2},
-	{title:"المبلغ المدين", field:"p_DR",  hozAlign:"center", editor:"input", bottomCalc:"sum", widthGrow:2.2},
-	{title:"الحساب الدائن", field:"p_CRAccount",  hozAlign:"center",  editor:"input", bottomCalc:"sum", widthGrow:2},
-	{title:"المبلغ الدائن", field:"p_CR",  hozAlign:"center",  editor:"input", bottomCalc:"sum", widthGrow:2},
+    {title:"الاسم", field:"p_Name"},
+	{title:"الوصف", field:"p_Description", hozAlign:"right"},
+	{title:"عنوان العامود", field:"p_ColumnTitle",  hozAlign:"center", editor:"input", bottomCalc:"sum", widthGrow:2.2},
+	{title:"وصف العامود", field:"p_ColumnDescription",  hozAlign:"center", editor:"input", bottomCalc:"sum", widthGrow:2.2},
+	{title:"تاريخ الاضافة", field:"p_EntryDate",  hozAlign:"center", editor:"input", bottomCalc:"sum", widthGrow:2.2},
+	{title:"وصف الاضافة", field:"p_EntryDescription",  hozAlign:"center",  editor:"input", bottomCalc:"sum", widthGrow:2},
+	{title:"المبلغ المضاف", field:"p_EntryAmount",  hozAlign:"center",  editor:"input", bottomCalc:"sum", widthGrow:2},
     ],
 });
 
-//undo button
-document.getElementById("history-undo").addEventListener("click", function(){
-  table.undo();
-});
-
-document.getElementById("history-redo").addEventListener("click", function(){
-  table.redo();
-});
 
 //redo button
 var the_Function = function(cell, formatterParams, onRendered){ //plain text value
@@ -217,62 +213,6 @@ var the_Function = function(cell, formatterParams, onRendered){ //plain text val
 return "<i class='fa fa-print'>function_trigger</i>";
 };
 
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("add-column");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-document.getElementById("submit-column").addEventListener("click", function(){
-	modal.style.display = "none";
-	var column = document.getElementById("new-column").value;
-   table.addColumn({title:column, field: column ,width:100, align:"center",editor:"input"})
-   for(var i = 0 ; i < tabledata.length; i++){
-	   table.updateData([{id:(i+1), Z:(i+10)}]);
-   }
-   
-   console.log(tabledata)
-});
-
-document.getElementById("submit").addEventListener("click", function(){
-	document.getElementById("table-after-edit").innerHTML = "";
-	for(var i = 0; i < tabledata.length; i++){
-	document.getElementById("table-after-edit").innerHTML += JSON.stringify(tabledata[i]) + "<br>";
-	}
-})
-
-document.getElementById("add-row").addEventListener("click", function(){
-	var row = {p_Code: "-1", p_Name: "اسم", p_Ceiling: "0", p_Requested: "0"};
-	table.addRow(row);
-	tabledata.push(row);
-})
-
-document.getElementById("add-it-to-backend").addEventListener("click", function(){
-	axios.post("/rest/array", {
-		array: tabledata
-	})
-})
 
 
 $('.tabulator-tableHolder').on('scroll', function () {

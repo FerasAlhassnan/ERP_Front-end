@@ -67,7 +67,6 @@ Vue.component('mynavbar', {
         '</div> '+
     '</div> '+
 '</div>'});
-
   
   Vue.component('myheader',{
 	  template: '<div id="header">'+
@@ -112,6 +111,8 @@ Vue.component('mynavbar', {
 		  '</div>'});
 
 
+
+
 var tabledata = [];
 
  var app = new Vue({
@@ -120,7 +121,7 @@ var tabledata = [];
     	  axios.post('/rest/saveBudgetYear', {
     	    		  p_Year: "2021"
     	            }).then(axios
-    	          	      .get('/rest/readPrograms')
+    	          	      .get('/rest/ReadTransferColumns')
     	        	      .then(response => (
 								  tabledata = response.data,
 								  table.setData(tabledata),
@@ -129,8 +130,6 @@ var tabledata = [];
 	      
 		  }
 })
-
-
 
 
 var fieldEl = document.getElementById("filter-field");
@@ -184,46 +183,20 @@ var table = new Tabulator("#example-table", {
 	height:"50%",
 	textDirection:"rtl",
 	headerSortElement:"<i class='fas fa-arrow-up'></i>",
-	layout:"fitColumns",
+	virtualDomHoz:true,
 	pagination:"local",
-	columnHeaderVertAlign:"bottom",
+	columnHeaderVertAlign:"center",
     paginationSize:10,
 	data:tabledata,
 	history:true,
+	layout:"fitColumns",
 	
-    columns:[{title:"رقم البرنامج", field:"p_Code"},
-    	{title:"اسم البرنامج", field:"p_Name", hozAlign:"right"},
-    	{title:"الوصف", field:"p_Description", hozAlign:"center", editor:"input"},
-    	{title:"تاريخ البدء", field:"p_StartDate",  hozAlign:"center",  editor:"input",widthGrow:2},
-    	{title:"المدة", field:"p_Duration", hozAlign:"center", editor:"input"},
-    	{title:"التكاليف المعتمدة", field:"p_DedicatedFunds", hozAlign:"center", editor:"input"},
-    	{title:"الارتباطات", 
-    		columns:[
-    	    	{title:"دائن", field:"p_TransferDebit", hozAlign:"center", editor:"input"},
-    	    	{title:"مدين", field:"p_TransferCredit", hozAlign:"center", editor:"input"}
-    		], hozAlign:"center"},
-	    {title:"المنصرف خلال الأعوام السابقة", field:"p_PastYearsSpending", hozAlign:"center", editor:"input"},
-	    {title:"الباقي من التكاليف", field:"p_RemainingFunds", hozAlign:"center", editor:"input"},
-	    {title:"اعتماد", field:"p_CurrentYearBudget", hozAlign:"center", editor:"input"},
-	    {title:"الارتباطات على التكاليف", field:"p_Commitments", hozAlign:"center", editor:"input"},
-	    {title:"النسبة المئوية", field:"p_Percentage", hozAlign:"center", editor:"input"}
-	
-	]
+    columns:[
+    {title:"اسم العامود", field:"p_Column"},
+	{title:"الوصف", field:"p_Description", hozAlign:"right"}
+    ],
 });
 
-
-
-
-
-
-//undo button
-document.getElementById("history-undo").addEventListener("click", function(){
-  table.undo();
-});
-
-document.getElementById("history-redo").addEventListener("click", function(){
-  table.redo();
-});
 
 //redo button
 var the_Function = function(cell, formatterParams, onRendered){ //plain text value
@@ -238,23 +211,11 @@ return "<i class='fa fa-print'>function_trigger</i>";
 
 
 
-document.getElementById("add-row").addEventListener("click", function(){
-	var row = {p_Code: "-1", p_Name: "اسم", p_Ceiling: "0", p_Requested: "0"};
-	table.addRow(row);
-	tabledata.push(row);
-})
-
-document.getElementById("add-it-to-backend").addEventListener("click", function(){
-	axios.post("/rest/array", {
-		array: tabledata
-	})
-})
-
-
 $('.tabulator-tableHolder').on('scroll', function () {
     $('.tabulator-calcs-holder').scrollLeft($(this).scrollLeft());
 });
 $('.tabulator-calcs-holder').on('scroll', function () {
     $('.tabulator-tableHolder').scrollLeft($(this).scrollLeft());
 });
+
 

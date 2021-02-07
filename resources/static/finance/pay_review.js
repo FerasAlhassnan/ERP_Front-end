@@ -78,7 +78,7 @@ Vue.component('mynavbar', {
 	  '<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">'+
 
 	      '<div class="container">'+
-	       ' <a class="navbar-brand" href="/hrs/home.html"> الموارد البشرية</a>'+
+	       ' <a class="navbar-brand" href="/finance/home.html"> النظام المالي</a>'+
 	       ' <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#home-navbarResponsive" aria-controls="home-navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">'+
 	     ' <span class="navbar-toggler-icon"></span>'+
 	    '</button>'+
@@ -86,26 +86,21 @@ Vue.component('mynavbar', {
 	        '  <ul class="navbar-nav ml-auto">'+
 	               	
 	          '    <li class="nav-item">'+
-	            '  <a class="nav-link" href="./staff_home.html">الموظفون</a>'+
+	            '  <a class="nav-link" href="./budget_home.html">الميزانية</a>'+
 	          '  </li>'+
 	             ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./overtime_home.html">خارج الدوام</a>'+
+	            '  <a class="nav-link" href="./expenses_home.html">التقرير المالي</a>'+
 	            '</li>'+
 	             '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./leave_home.html">الإجازات</a>'+
+	            '  <a class="nav-link" href="./program_home.html">البرامج</a>'+
 	           ' </li>'+
 
 	            '<li class="nav-item">'+
-	             ' <a class="nav-link" href="./job_home.html">الوظائف</a>'+
+	             ' <a class="nav-link" href="./journal_home.html">اليوميات</a>'+
 	           ' </li>'+
-	            ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./grade_home.html">المراتب</a>'+
-	           ' </li>'+
-	           ' <li class="nav-item">'+
-	            '  <a class="nav-link" href="./department_home.html">الإدارات</a>'+
-	           ' </li>'+
-	            '  <li class="nav-item">'+
-	            '  <a class="nav-link" href="./pay_home.html">الرواتب</a>'+
+	           
+	           '<li class="nav-item">'+
+	             ' <a class="nav-link" href="./account_home.html">الحسابات</a>'+
 	           ' </li>'+
 
 
@@ -118,6 +113,7 @@ Vue.component('mynavbar', {
 	         ' </div>'+
 	           
 		  '</div>'});
+
   
   Vue.component('myjs',{
 	  template: '<div id="js"></div>'
@@ -163,10 +159,11 @@ Vue.component('mynavbar', {
     		console.log("HERE", this.p_EmployeeID)
 	    
     	},
-    	approve: function (){
-    		axios.get('/rest/approvePayment').then(
-    				alert("جميع الرواتب تمت الموافقة عليها"))
+    	approve: function(){
+    		axios.get('/rest/recordSalaryEntry').then(
+    				alert("record salary"))
     	}
+    	
     }
   })
   

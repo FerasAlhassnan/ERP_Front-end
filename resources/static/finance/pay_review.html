@@ -78,13 +78,13 @@
                 </thead>
                 <tbody id="payrolls">   
                 		<tr v-for="payment in allPayment">
-	                			<td><input type='radio' v-bind:id='payment.p_EmployeeID' v-bind:name='payment.p_EmployeeID' value='' align='right'>
+	                			<td><input type='radio' v-bind:id='payment.p_FirstName' v-bind:name='payment.p_FirstName' value='' align='right'>
 	                			{{payment.p_FirstName}} {{payment.p_MiddleName}} {{payment.p_LastName}} <br>
 	                			{{payment.p_Name}}<br>
 	                			{{payment.p_Date}}<br>
 	                			{{payment.p_Type}}<br>
-	                			{{payment.p_Status}}<br>
 	                			{{payment.p_Amount}}<br>
+	                			{{payment.p_Status}}<br>
 	                			</input>
 	                			</td>
                 		</tr>
@@ -92,8 +92,8 @@
                 </tbody>
             </table>
             
-                <input type="submit" @click="approve" value="موافقة"/>
-                <input type="submit" value="تتحت المراجعة"/>
+                <input type="submit" @click="approve" value="دفع"/>
+                <input type="submit" value="تحت المراجعة"/>
         </div>
     </div>
 

@@ -25,9 +25,10 @@ Vue.component('mynavbar', {
            '<li class="nav-item">'+
             '<a class="nav-link" href="/hrs/home.html">نظام الموارد البشرية</a>'+
           '</li>'+
+
           '<li class="nav-item">'+
-          '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
-        '</li>'+
+            '<a class="nav-link" href="/project/home.html">إدارة المشاريع</a>'+
+          '</li>'+
              '<li class="nave-item"><a class="nav-link" href="/logout"> تسجيل خروج   </a></li>'+
 
                          
@@ -67,7 +68,6 @@ Vue.component('mynavbar', {
         '</div> '+
     '</div> '+
 '</div>'});
-
   
   Vue.component('myheader',{
 	  template: '<div id="header">'+
@@ -112,118 +112,150 @@ Vue.component('mynavbar', {
 		  '</div>'});
 
 
-var tabledata = [];
 
+
+var tabledata = [];
+var j = 1;
+var x = 11;
  var app = new Vue({
       el: '#body',
-      mounted () {
-    	  axios.post('/rest/saveBudgetYear', {
-    	    		  p_Year: "2021"
-    	            }).then(axios
-    	          	      .get('/rest/readPrograms')
-    	        	      .then(response => (
-								  tabledata = response.data,
-								  table.setData(tabledata),
-								  console.log(tabledata)
-								  )))
-	      
-		  }
+      data () {
+		return {
+			accounts: [],
+			account: 21,
+			page: '',
+			pages: [],
+			count: 0,
+			p_Program: '',
+			Programs: [],
+			count: 0,
+			
+		}
+	}, mounted (){
+		var self = this;
+		axios.get('/rest/getReadBudgetAccount', {
+			p_Code: 
+				this.convertDigitIn(this.account.toString())
+		}).then(function (response){
+				self.accounts = response.data;
+				self.page = self.accounts[1].p_Code;
+				for(var i = 1; i < self.accounts.length; i++){
+					self.pages.push(self.accounts[i].p_Code)
+				}
+				console.log(self.pages);
+				axios.put('/rest/readEarmarkedPrograms', {
+					p_Code: self.page
+				}).then(function (response){
+				  tabledata = response.data;
+				  console.log(tabledata);
+				  if(tabledata.length !== 0){
+					  table.replaceData(tabledata);
+				  }
+				  console.log(tabledata);
+				  axios.get('/rest/readPrograms').then(response =>(
+						  self.Programs = response.data,
+						  console.log(self.Programs)
+						  
+				  ))
+		}
+				)
+				}
+		)
+		
+		
+	},
+	methods: {
+		relateProgram: function (){
+			axios.put('/rest/relateProgram', {
+				p_Program: this.p_Program,
+				p_Account: this.page,
+			}).then(response => {
+					tabledata = response.data,
+					console.log(tabledata)
+					table.replaceData(tabledata)
+			})
+		},
+		convertDigitIn(enDigit){
+			var newValue="";
+		    for (var i=0;i<enDigit.length;i++)
+		    {
+		        var ch=enDigit.charCodeAt(i);
+		        if (ch>=48 && ch<=57)
+		        {
+		            // european digit range
+		            var newChar=ch+1584;
+		            newValue=newValue+String.fromCharCode(newChar);
+		        }
+		        else
+		            newValue=newValue+String.fromCharCode(ch);
+		    }
+		    console.log(newValue)
+		    	return newValue;
+			}
+		},
+	watch: {
+		page: function (val){
+			if(j > 1){
+				axios.put('/rest/readEarmarkedPrograms', {
+					p_Code: 
+						this.page
+				}).then(function (response) {
+						tabledata = response.data;
+						console.log(tabledata);
+						if(tabledata.length !== 0){
+							console.log(tabledata);
+							table.replaceData(tabledata);
+						}
+						  console.log(tabledata);
+		}
+				)
+				for(var k = 0; k < this.accounts.length; k++){
+					if(this.page === this.accounts[k].p_Code){
+						this.count = k;
+					}
+				}
+		}
+			j++;
+			console.log(j)
+		}
+	}
+      
 })
 
-
-
-
-var fieldEl = document.getElementById("filter-field");
-var typeEl = "like";
-var valueEl = document.getElementById("filter-value");
-
-//Custom filter example
-function customFilter(data){
-    return data.car && data.rating < 3;
-}
-
-//Trigger setFilter function with correct parameters
-function updateFilter(){
-  var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
-  if(filterVal === "gender"){
-  		var typeVal = "=";
-  }else{
-	  var typeVal = "like";
-  }
-
-  var filter = filterVal == "function" ? customFilter : filterVal;
-
-  if(filterVal == "function" ){
-    typeEl.disabled = true;
-    valueEl.disabled = true;
-  }else{
-    typeEl.disabled = false;
-    valueEl.disabled = false;
-  }
-
-  if(filterVal){
-    table.setFilter(filter,typeVal, valueEl.value);
-  }
-}
-
-//Update filters on value change
-document.getElementById("filter-field").addEventListener("change", updateFilter);
-document.getElementById("filter-value").addEventListener("keyup", updateFilter);
-
-//Clear filters on "Clear Filters" button click
-document.getElementById("filter-clear").addEventListener("click", function(){
-  fieldEl.value = "";
-  typeEl.value = "=";
-  valueEl.value = "";
-
-  table.clearFilter();
-});
-
-
 var table = new Tabulator("#example-table", {
-	height:"50%",
-	textDirection:"rtl",
-	headerSortElement:"<i class='fas fa-arrow-up'></i>",
-	layout:"fitColumns",
-	pagination:"local",
-	columnHeaderVertAlign:"bottom",
-    paginationSize:10,
-	data:tabledata,
-	history:true,
-	
-    columns:[{title:"رقم البرنامج", field:"p_Code"},
-    	{title:"اسم البرنامج", field:"p_Name", hozAlign:"right"},
-    	{title:"الوصف", field:"p_Description", hozAlign:"center", editor:"input"},
-    	{title:"تاريخ البدء", field:"p_StartDate",  hozAlign:"center",  editor:"input",widthGrow:2},
-    	{title:"المدة", field:"p_Duration", hozAlign:"center", editor:"input"},
-    	{title:"التكاليف المعتمدة", field:"p_DedicatedFunds", hozAlign:"center", editor:"input"},
-    	{title:"الارتباطات", 
-    		columns:[
-    	    	{title:"دائن", field:"p_TransferDebit", hozAlign:"center", editor:"input"},
-    	    	{title:"مدين", field:"p_TransferCredit", hozAlign:"center", editor:"input"}
-    		], hozAlign:"center"},
-	    {title:"المنصرف خلال الأعوام السابقة", field:"p_PastYearsSpending", hozAlign:"center", editor:"input"},
-	    {title:"الباقي من التكاليف", field:"p_RemainingFunds", hozAlign:"center", editor:"input"},
-	    {title:"اعتماد", field:"p_CurrentYearBudget", hozAlign:"center", editor:"input"},
-	    {title:"الارتباطات على التكاليف", field:"p_Commitments", hozAlign:"center", editor:"input"},
-	    {title:"النسبة المئوية", field:"p_Percentage", hozAlign:"center", editor:"input"}
-	
-	]
-});
+		textDirection:"rtl",
+		headerSortElement:"<i class='fas fa-arrow-up'></i>",
+		virtualDomHoz:true,
+		pagination:"local",
+		columnHeaderVertAlign:"center",
+	    paginationSize:10,
+		data:tabledata,
+		history:true,
+		layout:"fitColumns",
+		
+	    columns:[
+	        {title:"رقم البرنامج", field:"p_Code"},
+	    	{title:"اسم البرنامج", field:"p_Name", hozAlign:"right"},
+	    	{title:"الوصف", field:"p_Description", hozAlign:"center", editor:"input"},
+	    	{title:"تاريخ البدء", field:"p_StartDate",  hozAlign:"center",  editor:"input",widthGrow:2},
+	    	{title:"المدة", field:"p_Duration", hozAlign:"center", editor:"input"},
+	    	{title:"التكاليف المعتمدة", field:"p_DedicatedFunds", hozAlign:"center", editor:"input"},
+	    	{title:"الارتباطات", 
+	    		columns:[
+	    	    	{title:"دائن", field:"p_TransferDebit", hozAlign:"center", editor:"input"},
+	    	    	{title:"مدين", field:"p_TransferCredit", hozAlign:"center", editor:"input"}
+	    		], hozAlign:"center"},
+		    {title:"المنصرف خلال الأعوام السابقة", field:"p_PastYearsSpending", hozAlign:"center", editor:"input"},
+		    {title:"الباقي من التكاليف", field:"p_RemainingFunds", hozAlign:"center", editor:"input"},
+		    {title:"اعتماد", field:"p_CurrentYearBudget", hozAlign:"center", editor:"input"},
+		    {title:"الارتباطات على التكاليف", field:"p_Commitments", hozAlign:"center", editor:"input"},
+		    {title:"النسبة المئوية", field:"p_Percentage", hozAlign:"center", editor:"input"}
+		],
+	});
 
 
 
 
-
-
-//undo button
-document.getElementById("history-undo").addEventListener("click", function(){
-  table.undo();
-});
-
-document.getElementById("history-redo").addEventListener("click", function(){
-  table.redo();
-});
 
 //redo button
 var the_Function = function(cell, formatterParams, onRendered){ //plain text value
@@ -237,24 +269,11 @@ return "<i class='fa fa-print'>function_trigger</i>";
 
 
 
-
-document.getElementById("add-row").addEventListener("click", function(){
-	var row = {p_Code: "-1", p_Name: "اسم", p_Ceiling: "0", p_Requested: "0"};
-	table.addRow(row);
-	tabledata.push(row);
-})
-
-document.getElementById("add-it-to-backend").addEventListener("click", function(){
-	axios.post("/rest/array", {
-		array: tabledata
-	})
-})
-
-
 $('.tabulator-tableHolder').on('scroll', function () {
     $('.tabulator-calcs-holder').scrollLeft($(this).scrollLeft());
 });
 $('.tabulator-calcs-holder').on('scroll', function () {
     $('.tabulator-tableHolder').scrollLeft($(this).scrollLeft());
 });
+
 

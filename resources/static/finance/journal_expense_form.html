@@ -185,7 +185,8 @@ background-color: #f6f6f6;
 
                 <li><a href="./home.html">الرئيسية</a></li>
                 <li><a href="./journal_table.html">استعراض جدول اليوميات</a> </li>
-                <li><a href="./jouranl_form.html">إنشاء جدول يوميات</a> </li>
+                <li><a href="./journal_transfer.html">استعراض جدول المناقلات</a> </li>
+                <li><a href="./journal_form.html">إنشاء جدول يوميات</a> </li>
                 <li><a href="./journal_expense_form.html">إنشاء جدول يوميات المصروفات</a> </li>
         </ul>
         
@@ -203,12 +204,12 @@ background-color: #f6f6f6;
 				<h3>إنشاء جدول يوميات المصروفات</h3>
 				<hr>
 				<div>
-					<form>
+					<form @submit="submitProduct">
 					<div class="form-inline">
 						<label>اسم اليومية:</label>
-						<input type="text" name="p_Name"/>
+						<input type="text" name="p_Name"  v-model="p_Name"/>
 						<label style="margin-right: 1%">الوصف:</label>
-						<textarea name="p_Description" rows="2" cols="50" style="border-color: #cfcfcf;
+						<textarea name="p_Description" v-model="p_Description" rows="2" cols="50" style="border-color: #cfcfcf;
   border-width: 1px;
   border-style: solid;
   border-radius: 0;"></textarea>
@@ -305,7 +306,7 @@ background-color: #f6f6f6;
 		<myfooter id="footer"></myfooter>
 	</div>
 
-	<script src="./journal.js"></script>
+	<script src="./journal_expense_form.js"></script>
 	<!-- I put my js code inside this file -->
 	
 	<script src="../js/finance_main.js"></script>

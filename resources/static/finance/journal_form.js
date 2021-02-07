@@ -113,19 +113,32 @@ Vue.component('mynavbar', {
 
 
 
-
-
-// vue ==========================================
-    var app = new Vue({
+ var app = new Vue({
       el: '#body',
-      data: {
-    	  allBudgets:null,
-    	  id: null,
-    	  chapter: null,
-        section: null, 
-        type: null,
-        title: null
-      }
-    });
-    
-    
+      data:{
+	      p_Name: '',
+	      p_Description: '',
+	      p_ColumnTitle: '',
+	      p_ColumnDescription: '',
+	      p_DebitAccountCode: '',
+	      p_CreditAccountCode: ''
+      },
+      methods: {
+        submitProduct: function () {
+          console.log({ nid: parseInt(this.nid) }) 
+      	  axios.post('/rest/createJournal', {
+              p_Name: this.p_Name,
+    	      p_Description: this.p_Description,
+    	      p_ColumnTitle: this.p_ColumnTitle,
+    	      p_ColumnDescription: this.p_ColumnDescription,
+    	      p_DebitAccountCode: this.p_DebitAccountCode,
+    	      p_CreditAccountCode: this.p_CreditAccountCode
+              }).then(response => {
+                  window.location.href = '/finance/home.html';
+              }).catch(error => {
+                  console.log(error.response)
+              });
+          }
+        }
+      
+})

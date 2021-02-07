@@ -1,17 +1,5 @@
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
-  .overview-item--c1,.overview-item--c2,.overview-item--c3,.overview-item--c4{
-    height: 250px;
-  }
-
-  .overview-chart{
-   height: 115px;
-  }
-  #widgetChart1,#widgetChart2,#widgetChart3,#widgetChart4{
-    position: absolute;
-    bottom: 45px!important;
-  }
-
   .overview-item--c1,
   .overview-item--c2,
   .overview-item--c3,
@@ -55,7 +43,7 @@
   .overview-box .icon {
     width: auto;
   }
-
+  
   .content-body{
     padding-top: 20px;
   }
@@ -71,17 +59,6 @@
   .content-body #buttons{
     padding: 0;
   }
-  .card-chart1{
-    padding: 0;
-  }
-  .card-chart2{
-    padding: 0;
-    margin-top: 40px;
-  }
-  .overview-text h4{
-    color: #fff;
-    font-size: 16px;
-  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -90,7 +67,7 @@
   .overview-item--c2,
   .overview-item--c3,
   .overview-item--c4 {
-    height: 250px;
+    height: 215px;
   }
 
   .overview-chart {
@@ -129,7 +106,7 @@
   .overview-box .icon {
     width: auto;
   }
-
+  
   .content-body{
     padding-top: 20px;
   }
@@ -147,24 +124,6 @@
   }
   .content-body #end {
     padding: 0;
-  }
-  .card-chart1{
-    padding: 0;
-  }
-  .card-chart2{
-    padding: 0;
-    margin-top: 40px;
-  }
-  .overview-text h4{
-    color: #fff;
-    font-size: 16px;
-  }
-  .card-chart1{
-    padding: 0;
-  }
-  .card-chart2{
-    padding: 0;
-    margin-top: 40px;
   }
 }
 
@@ -214,7 +173,7 @@
   .overview-box .icon {
     width: auto;
   }
-
+  
   .content-body{
     padding-top: 20px;
   }
@@ -229,13 +188,6 @@
   }
   .content-body #end {
     padding: 0;
-  }
-  .card-chart1{
-    padding: 0;
-  }
-  .card-chart2{
-    padding: 0;
-    margin-top: 40px;
   }
 }
 
@@ -328,7 +280,7 @@
   }
   .chart-percent-card h3 {
   }
-
+  
   .content-body{
     padding-top: 20px;
   }
@@ -343,14 +295,6 @@
   }
   .content-body #end {
     padding: 0;
-  }
-  .card-chart1{
-    margin-top: 40px;
-    padding-right: 0;
-  }
-  .card-chart2{
-    padding: 0;
-    margin-top: 40px;
   }
 }
 
@@ -399,7 +343,6 @@
   .overview-box .icon {
     width: auto;
   }
-
   .content-body{
     padding-top: 20px;
   }

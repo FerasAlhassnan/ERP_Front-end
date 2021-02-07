@@ -1,0 +1,361 @@
+<html dir="rtl" lang="AR">
+<head>
+<meta charset="utf-8">
+<title>النظام المالي</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../vue.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+  
+  <link id="bootstrapcss" href="../bootstrap.css" rel="stylesheet">
+    <link id="headercss" href="../header.css" rel="stylesheet">
+   	<link id="stylecss" href="../style.css" rel="stylesheet">
+   		<link id="stylecss" href="../css/custom_style_finance.css" rel="stylesheet">
+   	
+   	
+  
+      	 
+<style>
+  #body {
+  min-height: 94.5vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px; 
+  box-sizing: border-box;
+}
+
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  color:white;
+  width: 100%;
+}
+
+ .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 20%;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 25%;
+      }
+    }
+
+    @media only screen and (max-width: 800px) {
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 30%;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 35%;
+      }
+    }
+
+    @media only screen and (max-width: 500px) {
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+      }
+    }
+
+    @media only screen and (max-width: 400px) {
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+      }
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .tabulator [class*="col-"] {
+      width: auto !important;
+    }
+
+    .tabulator-col-title {
+      padding-left: 0 !important;
+      text-align: center !important;
+    }
+
+    #example-table .tabulator-calcs-holder {
+      font-weight: bold;
+      color: black;
+    }
+
+    .tabulator-col[aria-sort="none"] .tabulator-col-sorter i {
+      color: #999;
+    }
+
+    /* Define the style when the column is sorted in ascending order */
+    .tabulator-col[aria-sort="asc"] .tabulator-col-sorter i {
+      color: #f00;
+    }
+
+    /* Define the style when the column is sorted in descending order */
+    .tabulator-col[aria-sort="desc"] .tabulator-col-sorter i {
+      color: #f00;
+      transform: scaleY(-1);
+      /* flip the icon vertically so the arrow points down */
+    }
+   .flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
+    margin-left: 20px;
+} 
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+table td { border-left: 1px dotted #000; border-right: 1px dotted #000;}
+table td:first-child { border-right: none;  border-left: none;} 
+table td:nth-child(2) { border-right: none; }
+table td:last-child {
+    border-left: none;
+}
+
+table th {
+  border-bottom: 1px dotted black;
+}
+
+table th:first-child { border-bottom:none;}
+.tableSpace{
+    width: fit-content;
+}
+</style>
+  </head>
+  <body>
+ <div id="body">
+	<mynavbar></mynavbar>
+	<myheader></myheader>
+	 <div id="content">
+      <div class="row">
+        <div class="col-md-2">
+        
+				<ul class="list-unstyled">
+                <br> <br> <br>
+
+                <li><a href="./home.html">الرئيسية</a></li>
+                <li><a href="./accounts.html">استعراض الحسابات</a> </li>
+                <li><a href="./account_form.html">إنشاء حساب جديد</a> </li>
+        </ul>
+				</div>
+        <div class="col-md-8 col-sm-12 col-xs-12 content-body">
+        <div>
+            <br>
+			<p>
+				<a href="./home.html">النظام المالي</a> / 
+				<a href="./account_home.html">الحسابات</a> / 
+				<a href="./accounts.html">استعراض الحسابات</a>
+			</p>
+			</div>
+		<hr>
+		<div>
+		<h3>استعراض الحسابات</h3>
+            </div>
+            <hr>
+          <div class="col-md-12 col-sm-12 col-xs-12 body-search" id="search">
+            <div class="row">
+              <div>
+                
+    <h4 v-if="account.length !== 0">الحساب: {{account[0].p_Code}} {{account[0].p_Name}}</h4>
+   
+              </div>
+            </div>
+          </div>
+          <hr>
+         <div class="flex-container">
+         <div class="flex-child">
+    <br>
+    <p v-if="account.length !== 0"><strong>الاعتماد الأصلي:</strong> {{account[0].p_OpeningBalance}}</p>
+
+<br>
+<p v-if="account.length !== 0"><strong>تعزيز:</strong> {{account[0].p_AddedFunds}}</p>
+    <p v-if="account.length !== 0"><strong>تخفيض:</strong> {{account[0].p_Reduction}}</p>
+    <p v-if="account.length !== 0"><strong>تسوية / مناقلة مدينة:</strong> {{account[0].p_TransferDebit}}</p>
+<p v-if="account.length !== 0"><strong>تسوية / مناقلة دائنة:</strong> {{account[0].p_TransferCredit}}</p>
+    <p v-if="account.length !== 0"><strong>صافي الاعتماد:</strong> {{account[0].p_NetBalance}}</p>
+<p v-if="account.length !== 0"><strong>المصروفات:</strong> {{account[0].p_Spending}}</p>
+<br>
+<p><strong>الارتباطات:-</strong></p>
+    <p style="margin-right: 5%" v-if="account.length !== 0"><strong>الاجمالي الكلي:</strong> {{account[0].p_GrandTotal}}</p>
+    <p style="margin-right: 5%" v-if="account.length !== 0"><strong>الاعتمادات المستندية:</strong> {{account[0].p_DocumantryCredits}}</p>
+	<p style="margin-right: 5%" v-if="account.length !== 0"><strong>المستديمة العهد المؤقتة:</strong> {{account[0].p_Custodies}}</p>
+<br>
+<p v-if="account.length !== 0"><strong>المدفوع:</strong> {{account[0].p_Paid}}</p>
+<p v-if="account.length !== 0"><strong>الوفر:</strong> {{account[0].p_RemainingBalance}}</p>
+<p v-if="account.length !== 0"><strong>نسبة:</strong> {{account[0].p_Percentage}}</p>
+</div>
+<div class="flex-child">
+<h4>آخر العمليات</h4>
+<a @click="Taccount" v-if="accountTable.length !== 0" style="color: #007bff;">تفاصيل</a>
+	<table id="employees" v-if="accountTable.length !== 0">
+				<tr align="center">
+							<th></th>
+    	                 	<th>دائن</th>
+    	                 	<th>مدين</th>
+    	           </tr>
+    	           <tr v-for="acc in accountTable">
+	    	           <td style="width: 15%">
+	    	           		<p class="tableSpace">الرمز:</p>
+	    	           		<p class="tableSpace">القيمة:</p>
+	    	           		<p class="tableSpace">التاريخ:</p>
+	    	           		<p class="tableSpace">الوصف:</p>
+	    	           </td>
+	    	           <td v-if="account.length !== 0 && acc.p_Type === 'Credit'" style="width: 40%">
+	    	           		<p class="tableSpace" style="padding-bottom: 10px;padding-top: 10px;">{{acc.p_Code}}</p>
+	    	           		<p class="tableSpace"style="padding-bottom: 10px;">{{acc.p_Amount}}</p>
+	    	           		<p class="tableSpace"style="padding-bottom: 10px;">{{acc.p_Date}}</p>
+	    	           		<p class="tableSpace">{{acc.p_Description}}</p>
+	    	           </td>
+	    	           <td v-else>
+	    	           </td>
+	    	           <td v-if="account.length !== 0 && acc.p_Type ==='Debit'" style="width: 40%">
+	    	           		<p class="tableSpace"style="padding-bottom: 10px; padding-top: 10px;">{{acc.p_Code}}</p>
+	    	           		<p class="tableSpace"style="padding-bottom: 10px;">{{acc.p_Amount}}</p>
+	    	           		<p class="tableSpace"style="padding-bottom: 10px;">{{acc.p_Date}}</p>
+	    	           		<p class="tableSpace">{{acc.p_Description}}</p>
+	    	           </td>
+	    	           <td v-else>
+	    	           </td>
+	    	           
+    	           </tr>
+		</table>
+		<p v-if="accountTable.length === 0"><strong>لا توجد عمليات لهذا الحساب</strong></p>
+</div>
+</div>
+
+<!-- TODO  make these buttons functional-->
+<hr>
+<h3>إضافة تعزيز</h3>
+<form>
+					<div class="form-inline">
+						<label>المبلغ:</label>
+						<input type="text" name="fundsAmount" v-model="fundsAmount" />
+						</div>
+						<input class="button" type="submit" @click="submitFunds" value="ارسال">
+					</form>
+					
+	<hr>
+	<h3>إضافة تخفيض</h3>
+	<form id="form-in">
+					<div class="form-inline">
+						
+						<label>المبلغ:</label>
+						<input type="text" name="reduceAmount" v-model="reduceAmount"/>
+						</div>
+						<input class="button" type="submit" @click="submitReduce" value="ارسال">
+					</form>
+	<hr>
+	<h3>مناقلات</h3>
+	<form id="form-in">
+					<div class="form-inline">
+						<label>من حساب:</label>
+						<input list="allAccounts" name="transferFrom" v-model="transferFrom"/>
+						<datalist id="allAccounts">
+						  <option v-for="accon in allAccounts" v-bind:value="accon.p_Code">
+						  {{accon.p_Name}}
+						  </option>
+						  </datalist>
+						<label>المبلغ:</label>
+						<input type="text" name="transferAmount" v-model="transferAmount"/>
+						</div>
+						<div class="form-inline">
+						<label>التاريخ:</label>
+						<input type="text" name="transferDate" v-model="transferDate"/>
+						<label>الوصف:</label>
+						<input type="text" name="transferDescription" v-model="transferDescription"/>
+						</div>
+						<input class="button" type="submit" @click="submitTransfer" value="ارسال">
+					</form>
+        </div>
+      </div>
+    </div>
+	
+<myfooter id="footer"></myfooter>
+  </div>  
+
+   </body>
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+              <script class="vue" src="./account_detail.js"></script>	 
+    
+</html>
+
+
