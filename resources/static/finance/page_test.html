@@ -295,18 +295,16 @@
 							<div class="col-md-4 col-12">
 								<div class="form-group row">
 									<label class="col-sm-2 col-12 col-form-label">السقف:</label>
-									<!--<input type="text" class="form-control" name="p_Name" v-if="accounts.length !==0" v-bind:value="accounts[count].p_Ceiling"/>-->
 									<div class="col-sm-10 col-12">
-										<input type="text" class="form-control" name="p_Name"/>
+										<input type="text" class="form-control" name="p_Name" v-if="accounts.length !==0" v-bind:value="accounts[count].p_Ceiling"/>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-4 col-12">
 								<div class="form-group row">
 									<label class="col-sm-2 col-12 col-form-label">الطلب:</label>
-									<!--<input type="text" name="p_Name"v-if="accounts.length !==0"  v-bind:value="accounts[count].p_Requested"/>-->
 									<div class="col-sm-10 col-12">
-										<input type="text" name="p_Name" class="form-control"/>
+										<input type="text" class="form-control" name="p_Name"v-if="accounts.length !==0"  v-bind:value="accounts[count].p_Requested"/>
 									</div>
 								</div>
 							</div>
@@ -322,8 +320,7 @@
 								<div class="form-group row">
 									<label class="col-sm-2 col-12 col-form-label">السقف:</label>
 									<div class="col-sm-10 col-12">
-										<!--<input type="text" name="p_Name" v-if="accounts.length !==0" v-bind:value="accounts[count].p_CeilingRevenue"/>-->
-										<input type="text" name="p_Name" class="form-control"/>
+										<input type="text" name="p_Name" class="form-control" v-if="accounts.length !==0" v-bind:value="accounts[count].p_CeilingRevenue"/>
 									</div>
 								</div>
 							</div>
@@ -332,8 +329,7 @@
 								<div class="form-group row">
 									<label class="col-sm-2 col-12 col-form-label">الطلب:</label>
 									<div class="col-sm-10 col-12">
-										<!--<input type="text" name="p_Name" v-if="accounts.length !==0" v-bind:value="accounts[count].p_RequestedRevenue"/>-->
-										<input type="text" name="p_Name" class="form-control"/>
+										<input type="text" name="p_Name" class="form-control" v-if="accounts.length !==0" v-bind:value="accounts[count].p_RequestedRevenue"/>
 									</div>
 								</div>
 							</div>
@@ -349,8 +345,7 @@
 								<div class="form-group row">
 									<label class="col-sm-2 col-12 col-form-label">المشروع:</label>
 									<div class="col-sm-10 col-12">
-										<input list="Programs" name=p_Program v-model="p_Program" class="form-control">
-										<!--<input list="Programs" name=p_Program v-model="p_Program">-->
+										<!--<input list="Programs" name=p_Program v-model="p_Program" class="form-control">-->
 									</div>
 								</div>
 							</div>
